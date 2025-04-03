@@ -43,14 +43,14 @@ const FoodCollection = () => {
                 <img src="A1.jpg" alt="Rice & Curry 1" />
                 <h4>Chicken Curry</h4>
                 <p>Rs. 8.99</p>
-                {getCartItem(1) ? (
+                {getCartItem(101) ? (
                   <div className="quantity-controls">
-                    <button onClick={() => updateQuantity(1, -1)}>−</button>
-                    <span>{getCartItem(1).quantity}</span>
-                    <button onClick={() => updateQuantity(1, 1)}>+</button>
+                    <button onClick={() => updateQuantity(101, -1)}>−</button>
+                    <span>{getCartItem(101).quantity}</span>
+                    <button onClick={() => updateQuantity(101, 1)}>+</button>
                   </div>
                 ) : (
-                  <button onClick={() => addToCart({ id: 1, name: 'Chicken Curry', price: 8.99, quantity: 1 })}>
+                  <button onClick={() => addToCart({ id: 101, name: 'Chicken Curry', price: 8.99, quantity: 1 })}>
                     Add to Cart
                   </button>
                 )}
@@ -59,14 +59,14 @@ const FoodCollection = () => {
                 <img src="A1.jpg" alt="Rice & Curry 2" />
                 <h4>Vegetable Curry</h4>
                 <p>Rs. 7.99</p>
-                {getCartItem(2) ? (
+                {getCartItem(102) ? (
                   <div className="quantity-controls">
-                    <button onClick={() => updateQuantity(2, -1)}>−</button>
-                    <span>{getCartItem(2).quantity}</span>
-                    <button onClick={() => updateQuantity(2, 1)}>+</button>
+                    <button onClick={() => updateQuantity(102, -1)}>−</button>
+                    <span>{getCartItem(102).quantity}</span>
+                    <button onClick={() => updateQuantity(102, 1)}>+</button>
                   </div>
                 ) : (
-                  <button onClick={() => addToCart({ id: 2, name: 'Vegetable Curry', price: 7.99, quantity: 1 })}>
+                  <button onClick={() => addToCart({ id: 102, name: 'Vegetable Curry', price: 7.99, quantity: 1 })}>
                     Add to Cart
                   </button>
                 )}
@@ -82,14 +82,14 @@ const FoodCollection = () => {
                 <img src="A1.jpg" alt="Fried Rice 1" />
                 <h4>Egg Fried Rice</h4>
                 <p>Rs. 9.99</p>
-                {getCartItem(3) ? (
+                {getCartItem(103) ? (
                   <div className="quantity-controls">
-                    <button onClick={() => updateQuantity(3, -1)}>−</button>
-                    <span>{getCartItem(3).quantity}</span>
-                    <button onClick={() => updateQuantity(3, 1)}>+</button>
+                    <button onClick={() => updateQuantity(103, -1)}>−</button>
+                    <span>{getCartItem(103).quantity}</span>
+                    <button onClick={() => updateQuantity(103, 1)}>+</button>
                   </div>
                 ) : (
-                  <button onClick={() => addToCart({ id: 3, name: 'Egg Fried Rice', price: 9.99, quantity: 1 })}>
+                  <button onClick={() => addToCart({ id: 103, name: 'Egg Fried Rice', price: 9.99, quantity: 1 })}>
                     Add to Cart
                   </button>
                 )}
@@ -98,14 +98,14 @@ const FoodCollection = () => {
                 <img src="A1.jpg" alt="Fried Rice 2" />
                 <h4>Chicken Fried Rice</h4>
                 <p>Rs. 10.99</p>
-                {getCartItem(4) ? (
+                {getCartItem(104) ? (
                   <div className="quantity-controls">
-                    <button onClick={() => updateQuantity(4, -1)}>−</button>
-                    <span>{getCartItem(4).quantity}</span>
-                    <button onClick={() => updateQuantity(4, 1)}>+</button>
+                    <button onClick={() => updateQuantity(104, -1)}>−</button>
+                    <span>{getCartItem(104).quantity}</span>
+                    <button onClick={() => updateQuantity(104, 1)}>+</button>
                   </div>
                 ) : (
-                  <button onClick={() => addToCart({ id: 4, name: 'Chicken Fried Rice', price: 10.99, quantity: 1 })}>
+                  <button onClick={() => addToCart({ id: 104, name: 'Chicken Fried Rice', price: 10.99, quantity: 1 })}>
                     Add to Cart
                   </button>
                 )}
@@ -121,14 +121,14 @@ const FoodCollection = () => {
                 <img src="A1.jpg" alt="Biryani 1" />
                 <h4>Chicken Biryani</h4>
                 <p>Rs. 12.99</p>
-                {getCartItem(1) ? (
+                {getCartItem(105) ? (
                   <div className="quantity-controls">
-                    <button onClick={() => updateQuantity(1, -1)}>−</button>
-                    <span>{getCartItem(1).quantity}</span>
-                    <button onClick={() => updateQuantity(1, 1)}>+</button>
+                    <button onClick={() => updateQuantity(105, -1)}>−</button>
+                    <span>{getCartItem(105).quantity}</span>
+                    <button onClick={() => updateQuantity(105, 1)}>+</button>
                   </div>
                 ) : (
-                  <button onClick={() => addToCart({ id: 1, name: 'Chicken Biryani', price: 12.99, quantity: 1 })}>
+                  <button onClick={() => addToCart({ id: 105, name: 'Chicken Biryani', price: 12.99, quantity: 1 })}>
                     Add to Cart
                   </button>
                 )}
@@ -137,14 +137,14 @@ const FoodCollection = () => {
                 <img src="A1.jpg" alt="Biryani 2" />
                 <h4>Veg Biryani</h4>
                 <p>Rs. 10.99</p>
-                {getCartItem(2) ? (
+                {getCartItem(106) ? (
                   <div className="quantity-controls">
-                    <button onClick={() => updateQuantity(2, -1)}>−</button>
-                    <span>{getCartItem(2).quantity}</span>
-                    <button onClick={() => updateQuantity(2, 1)}>+</button>
+                    <button onClick={() => updateQuantity(106, -1)}>−</button>
+                    <span>{getCartItem(106).quantity}</span>
+                    <button onClick={() => updateQuantity(106, 1)}>+</button>
                   </div>
                 ) : (
-                  <button onClick={() => addToCart({ id: 2, name: 'Veg Biryani', price: 10.99, quantity: 1 })}>
+                  <button onClick={() => addToCart({ id: 106, name: 'Veg Biryani', price: 10.99, quantity: 1 })}>
                     Add to Cart
                   </button>
                 )}
@@ -160,14 +160,14 @@ const FoodCollection = () => {
                 <img src="A1.jpg" alt="Nasigoreng 1" />
                 <h4>Spicy Nasigoreng</h4>
                 <p>Rs. 11.99</p>
-                {getCartItem(5) ? (
+                {getCartItem(107) ? (
                   <div className="quantity-controls">
-                    <button onClick={() => updateQuantity(5, -1)}>−</button>
-                    <span>{getCartItem(5).quantity}</span>
-                    <button onClick={() => updateQuantity(5, 1)}>+</button>
+                    <button onClick={() => updateQuantity(107, -1)}>−</button>
+                    <span>{getCartItem(107).quantity}</span>
+                    <button onClick={() => updateQuantity(107, 1)}>+</button>
                   </div>
                 ) : (
-                  <button onClick={() => addToCart({ id: 5, name: 'Spicy Nasigoreng', price: 11.99, quantity: 1 })}>
+                  <button onClick={() => addToCart({ id: 107, name: 'Spicy Nasigoreng', price: 11.99, quantity: 1 })}>
                     Add to Cart
                   </button>
                 )}
@@ -183,14 +183,14 @@ const FoodCollection = () => {
                 <img src="A1.jpg" alt="Lemon Rice 1" />
                 <h4>Lemon Rice</h4>
                 <p>Rs. 6.99</p>
-                {getCartItem(6) ? (
+                {getCartItem(108) ? (
                   <div className="quantity-controls">
-                    <button onClick={() => updateQuantity(6, -1)}>−</button>
-                    <span>{getCartItem(6).quantity}</span>
-                    <button onClick={() => updateQuantity(6, 1)}>+</button>
+                    <button onClick={() => updateQuantity(108, -1)}>−</button>
+                    <span>{getCartItem(108).quantity}</span>
+                    <button onClick={() => updateQuantity(108, 1)}>+</button>
                   </div>
                 ) : (
-                  <button onClick={() => addToCart({ id: 6, name: 'Lemon Rice', price: 6.99, quantity: 1 })}>
+                  <button onClick={() => addToCart({ id: 108, name: 'Lemon Rice', price: 6.99, quantity: 1 })}>
                     Add to Cart
                   </button>
                 )}
@@ -206,14 +206,14 @@ const FoodCollection = () => {
                 <img src="A1.jpg" alt="String Hoppers Kottu 1" />
                 <h4>Chicken Kottu</h4>
                 <p>Rs. 9.99</p>
-                {getCartItem(7) ? (
+                {getCartItem(109) ? (
                   <div className="quantity-controls">
-                    <button onClick={() => updateQuantity(7, -1)}>−</button>
-                    <span>{getCartItem(7).quantity}</span>
-                    <button onClick={() => updateQuantity(7, 1)}>+</button>
+                    <button onClick={() => updateQuantity(109, -1)}>−</button>
+                    <span>{getCartItem(109).quantity}</span>
+                    <button onClick={() => updateQuantity(109, 1)}>+</button>
                   </div>
                 ) : (
-                  <button onClick={() => addToCart({ id: 7, name: 'Chicken Kottu', price: 9.99, quantity: 1 })}>
+                  <button onClick={() => addToCart({ id: 109, name: 'Chicken Kottu', price: 9.99, quantity: 1 })}>
                     Add to Cart
                   </button>
                 )}
@@ -229,14 +229,14 @@ const FoodCollection = () => {
                 <img src="A1.jpg" alt="Curry 1" />
                 <h4>Mutton Curry</h4>
                 <p>Rs. 12.99</p>
-                {getCartItem(8) ? (
+                {getCartItem(110) ? (
                   <div className="quantity-controls">
-                    <button onClick={() => updateQuantity(8, -1)}>−</button>
-                    <span>{getCartItem(8).quantity}</span>
-                    <button onClick={() => updateQuantity(8, 1)}>+</button>
+                    <button onClick={() => updateQuantity(110, -1)}>−</button>
+                    <span>{getCartItem(110).quantity}</span>
+                    <button onClick={() => updateQuantity(110, 1)}>+</button>
                   </div>
                 ) : (
-                  <button onClick={() => addToCart({ id: 8, name: 'Mutton Curry', price: 12.99, quantity: 1 })}>
+                  <button onClick={() => addToCart({ id: 110, name: 'Mutton Curry', price: 12.99, quantity: 1 })}>
                     Add to Cart
                   </button>
                 )}
@@ -245,14 +245,14 @@ const FoodCollection = () => {
                 <img src="A1.jpg" alt="Curry 2" />
                 <h4>Fish Curry</h4>
                 <p>Rs. 10.99</p>
-                {getCartItem(9) ? (
+                {getCartItem(111) ? (
                   <div className="quantity-controls">
-                    <button onClick={() => updateQuantity(9, -1)}>−</button>
-                    <span>{getCartItem(9).quantity}</span>
-                    <button onClick={() => updateQuantity(9, 1)}>+</button>
+                    <button onClick={() => updateQuantity(111, -1)}>−</button>
+                    <span>{getCartItem(111).quantity}</span>
+                    <button onClick={() => updateQuantity(111, 1)}>+</button>
                   </div>
                 ) : (
-                  <button onClick={() => addToCart({ id: 9, name: 'Fish Curry', price: 10.99, quantity: 1 })}>
+                  <button onClick={() => addToCart({ id: 111, name: 'Fish Curry', price: 10.99, quantity: 1 })}>
                     Add to Cart
                   </button>
                 )}
@@ -268,14 +268,14 @@ const FoodCollection = () => {
                 <img src="A1.jpg" alt="Rotty Kothu 1" />
                 <h4>Beef Kothu</h4>
                 <p>Rs. 11.99</p>
-                {getCartItem(10) ? (
+                {getCartItem(112) ? (
                   <div className="quantity-controls">
-                    <button onClick={() => updateQuantity(10, -1)}>−</button>
-                    <span>{getCartItem(10).quantity}</span>
-                    <button onClick={() => updateQuantity(10, 1)}>+</button>
+                    <button onClick={() => updateQuantity(112, -1)}>−</button>
+                    <span>{getCartItem(112).quantity}</span>
+                    <button onClick={() => updateQuantity(112, 1)}>+</button>
                   </div>
                 ) : (
-                  <button onClick={() => addToCart({ id: 10, name: 'Beef Kothu', price: 11.99, quantity: 1 })}>
+                  <button onClick={() => addToCart({ id: 112, name: 'Beef Kothu', price: 11.99, quantity: 1 })}>
                     Add to Cart
                   </button>
                 )}
@@ -331,14 +331,14 @@ const FoodCollection = () => {
                 <img src="A1.jpg" alt="Dessert 1" />
                 <h4>Chocolate Cake</h4>
                 <p>Rs. 5.99</p>
-                {getCartItem(5) ? (
+                {getCartItem(113) ? (
                   <div className="quantity-controls">
-                    <button onClick={() => updateQuantity(5, -1)}>−</button>
-                    <span>{getCartItem(5).quantity}</span>
-                    <button onClick={() => updateQuantity(5, 1)}>+</button>
+                    <button onClick={() => updateQuantity(113, -1)}>−</button>
+                    <span>{getCartItem(113).quantity}</span>
+                    <button onClick={() => updateQuantity(113, 1)}>+</button>
                   </div>
                 ) : (
-                  <button onClick={() => addToCart({ id: 5, name: 'Chocolate Cake', price: 5.99, quantity: 1 })}>
+                  <button onClick={() => addToCart({ id: 113, name: 'Chocolate Cake', price: 5.99, quantity: 1 })}>
                     Add to Cart
                   </button>
                 )}
@@ -347,14 +347,14 @@ const FoodCollection = () => {
                 <img src="A1.jpg" alt="Dessert 2" />
                 <h4>Ice Cream</h4>
                 <p>Rs. 3.99</p>
-                {getCartItem(6) ? (
+                {getCartItem(114) ? (
                   <div className="quantity-controls">
-                    <button onClick={() => updateQuantity(6, -1)}>−</button>
-                    <span>{getCartItem(6).quantity}</span>
-                    <button onClick={() => updateQuantity(6, 1)}>+</button>
+                    <button onClick={() => updateQuantity(114, -1)}>−</button>
+                    <span>{getCartItem(114).quantity}</span>
+                    <button onClick={() => updateQuantity(114, 1)}>+</button>
                   </div>
                 ) : (
-                  <button onClick={() => addToCart({ id: 6, name: 'Ice Cream', price: 3.99, quantity: 1 })}>
+                  <button onClick={() => addToCart({ id: 114, name: 'Ice Cream', price: 3.99, quantity: 1 })}>
                     Add to Cart
                   </button>
                 )}

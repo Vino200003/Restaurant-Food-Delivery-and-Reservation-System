@@ -1,9 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
 import { NavLink } from "react-router-dom"; // Use NavLink for active link styling
 import { BiCart } from "react-icons/bi"; // Import Cart Icon
+import { CartContext } from "../../context/CartContext"; // Import CartContext
 import "./Navbar.css";
 
 const Navbar = () => {
+  const { cart } = useContext(CartContext); // Access cart from context
+
+  // Calculate total quantity of items in the cart
+  const totalQuantity = cart.reduce((total, item) => total + item.quantity, 0);
+
   return (
     <nav className="navbar">
       <NavLink to="/" className="logo" aria-label="Go to Home">
@@ -46,7 +52,6 @@ const Navbar = () => {
             Reservation
           </NavLink>
         </li>
-        
       </ul>
       <div className="auth-buttons">
         <NavLink to="/login" aria-label="Login to your account">
@@ -58,7 +63,7 @@ const Navbar = () => {
         <NavLink to="/cart" aria-label="View your cart">
           <button className="cart-btn">
             <BiCart className="cart-icon" />
-            <span className="cart-qty">0</span>
+            {totalQuantity > 0 && <span className="cart-qty">{totalQuantity}</span>}
           </button>
         </NavLink>
       </div>
