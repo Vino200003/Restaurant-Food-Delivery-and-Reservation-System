@@ -9,6 +9,7 @@ import Menu from './pages/Menu/Menu';
 import Contact from "./pages/Contact/Contact";
 import Reservation from "./pages/Reservation/Reservation";
 import Cart from './pages/Cart/Cart';
+import Checkout from "./pages/Checkout/Checkout";
 
 const App = () => {
   return (
@@ -23,6 +24,7 @@ const App = () => {
         <Route path="*" element={<div>404 - Page Not Found</div>} />
         <Route path="/menu" element={<Menu/>}/>
         <Route path='/cart' element={<Cart/>}/>
+        <Route path="/checkout" element={<Checkout />} />
       </Routes>
     </CartProvider>
   );

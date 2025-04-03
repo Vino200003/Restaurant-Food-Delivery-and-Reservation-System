@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { CartContext } from '../../context/CartContext'; // Import CartContext
 import './CartTotal.css';
 
-const CartTotal = () => {
+const CartTotal = ({ onCheckout }) => {
   const { cart, updateQuantity, removeFromCart } = useContext(CartContext); // Access cart and actions
 
   const calculateSubtotal = () =>
@@ -62,7 +62,7 @@ const CartTotal = () => {
           <p><span>Taxes:</span><span>Rs.{taxes.toFixed(2)}</span></p>
           <p><span>Coupon Discount:</span><span>-Rs.{couponDiscount.toFixed(2)}</span></p>
           <h3><span>Total:</span><span>Rs.{total.toFixed(2)}</span></h3>
-          <button className="checkout-btn">Proceed to Checkout</button>
+          <button className="checkout-btn" onClick={onCheckout}>Proceed to Checkout</button>
         </div>
       </div>
     </div>
