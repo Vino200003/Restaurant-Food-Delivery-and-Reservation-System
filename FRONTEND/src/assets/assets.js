@@ -9,6 +9,7 @@ import header4 from './header4.png'
 import Header5 from './Header5.png'
 import header6 from './header6.png'
 import About from './About.png'
+import A1 from './A1.jpg'
 
 
 
@@ -23,7 +24,8 @@ export const assets = {
     header4: header4,
     Header5: Header5,
     header6: header6,
-    About: About
+    About: About,
+    A1:A1
     
     
 }

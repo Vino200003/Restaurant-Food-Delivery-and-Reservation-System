@@ -1,98 +1,133 @@
 html {
     scroll-behavior: smooth;
-  }
-  
-  .menu-container {
+}
+
+.menu-container {
     display: flex;
     padding: 20px;
-  }
-  
-  .category-menu {
-    width: 25%;
-    padding: 10px;
-    background-color: #f4f4f4;
-  }
-  
-  .category-menu h3 {
-    font-size: 20px;
+    gap: 20px;
+}
+
+.category-menu {
+    width: 20%;
+    padding: 15px;
+    background-color: #f9f9f9;
+    border-right: 1px solid #ddd;
+}
+
+.category-menu h3 {
+    font-size: 22px;
     font-weight: bold;
-    margin-bottom: 15px;
-  }
-  
-  .category-menu ul {
+    margin-bottom: 20px;
+}
+
+.category-menu ul {
     list-style-type: none;
     padding: 0;
-  }
-  
-  .category-menu ul li {
+}
+
+.category-menu ul li {
     margin: 10px 0;
-  }
-  
-  .category-link, .subcategory-link {
+}
+
+.category-menu ul li a {
     text-decoration: none;
     color: #333;
+    font-size: 16px;
     font-weight: bold;
-  }
-  
-  .category-menu .subcategory-list {
-    margin-left: 20px;
-  }
-  
-  .food-items {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    width: 75%;
-  }
-  
-  .category-section {
-    width: 100%;
-    margin-bottom: 40px;
-  }
-  
-  .food-item-list {
-    display: flex;
-    gap: 20px;
-    flex-wrap: wrap;
-  }
-  
-  .food-item {
+    display: block;
+    padding: 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.category-menu ul li a:hover,
+.category-menu ul li a.active {
+    background-color: #ff6347;
+    color: white;
+}
+
+.food-items {
+    display: block; /* Change from flex to block to allow horizontal scrolling */
+    overflow-x: auto; /* Enable horizontal scrolling */
+    white-space: nowrap; /* Prevent wrapping of items */
+    padding-bottom: 10px; /* Add some space below items */
+}
+
+.food-item {
+    display: inline-block; /* Ensure items are displayed inline */
+    vertical-align: top; /* Align items to the top */
+    margin-right: 20px; /* Add spacing between items */
+    width: 200px; /* Adjust width to fit horizontally */
     text-align: center;
     background-color: white;
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     padding: 15px;
-    width: 200px;
-  }
-  
-  .food-item img {
+    transition: transform 0.3s ease;
+}
+
+.food-item:hover {
+    transform: scale(1.05);
+}
+
+.food-item img {
     width: 100%;
     height: auto;
     border-radius: 8px;
-  }
-  
-  .food-item h4 {
+}
+
+.food-item h4 {
     font-size: 18px;
     margin-top: 10px;
-  }
-  
-  .food-item p {
+    font-weight: bold;
+}
+
+.food-item p {
     font-size: 16px;
     color: #555;
     margin: 5px 0;
-  }
-  
-  .food-item button {
-    padding: 8px 16px;
+}
+
+.food-item button {
+    padding: 10px 20px;
     background-color: #ff6347;
     border: none;
     color: white;
     cursor: pointer;
     border-radius: 5px;
     font-weight: bold;
-  }
-  
-  .food-item button:hover {
+    transition: background-color 0.3s ease;
+}
+
+.food-item button:hover {
     background-color: #e55347;
-  }
-  
+}
+
+.search-bar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 10px 0;
+    background-color: #f9f9f9;
+    border-bottom: 1px solid #ddd;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.search-bar input {
+    width: 60%;
+    max-width: 600px;
+    padding: 10px 15px;
+    border: 1px solid #ddd;
+    border-radius: 25px;
+    font-size: 16px;
+    outline: none;
+    transition: box-shadow 0.3s ease;
+}
+
+.search-bar input:focus {
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+}
