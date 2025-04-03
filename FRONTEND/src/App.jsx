@@ -1,5 +1,6 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
+import { CartProvider } from "./context/CartContext"; // Import CartProvider
 import Home from "./pages/Home/Home";
 import Login from "./pages/Login/Login";
 import Navbar from "./components/Navbar/Navbar";
@@ -11,7 +12,7 @@ import Cart from './pages/Cart/Cart';
 
 const App = () => {
   return (
-    <>
+    <CartProvider>
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
@@ -22,10 +23,8 @@ const App = () => {
         <Route path="*" element={<div>404 - Page Not Found</div>} />
         <Route path="/menu" element={<Menu/>}/>
         <Route path='/cart' element={<Cart/>}/>
-
-        
       </Routes>
-    </>
+    </CartProvider>
   );
 };
 
