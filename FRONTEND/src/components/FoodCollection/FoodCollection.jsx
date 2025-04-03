@@ -42,13 +42,13 @@ const FoodCollection = () => {
             <div className="food-item">
               <img src="A1.jpg" alt="Rice & Curry 1" />
               <h4>Chicken Curry</h4>
-              <p>$8.99</p>
+              <p>Rs. 8.99</p>
               <button onClick={() => addToCart({ id: 1, name: 'Chicken Curry', price: 8.99 })}>Add to Cart</button>
             </div>
             <div className="food-item">
               <img src="A1.jpg" alt="Rice & Curry 2" />
               <h4>Vegetable Curry</h4>
-              <p>$7.99</p>
+              <p>Rs. 7.99</p>
               <button onClick={() => addToCart({ id: 2, name: 'Vegetable Curry', price: 7.99 })}>Add to Cart</button>
             </div>
           </div>
@@ -61,13 +61,13 @@ const FoodCollection = () => {
             <div className="food-item">
               <img src="A1.jpg" alt="Fried Rice 1" />
               <h4>Egg Fried Rice</h4>
-              <p>$9.99</p>
+              <p>Rs. 9.99</p>
               <button onClick={() => addToCart({ id: 3, name: 'Egg Fried Rice', price: 9.99 })}>Add to Cart</button>
             </div>
             <div className="food-item">
               <img src="A1.jpg" alt="Fried Rice 2" />
               <h4>Chicken Fried Rice</h4>
-              <p>$10.99</p>
+              <p>Rs. 10.99</p>
               <button onClick={() => addToCart({ id: 4, name: 'Chicken Fried Rice', price: 10.99 })}>Add to Cart</button>
             </div>
           </div>
@@ -80,13 +80,13 @@ const FoodCollection = () => {
             <div className="food-item">
               <img src="A1.jpg" alt="Biryani 1" />
               <h4>Chicken Biryani</h4>
-              <p>$12.99</p>
+              <p>Rs. 12.99</p>
               <button onClick={() => addToCart({ id: 1, name: 'Chicken Biryani', price: 12.99 })}>Add to Cart</button>
             </div>
             <div className="food-item">
               <img src="A1.jpg" alt="Biryani 2" />
               <h4>Veg Biryani</h4>
-              <p>$10.99</p>
+              <p>Rs. 10.99</p>
               <button onClick={() => addToCart({ id: 2, name: 'Veg Biryani', price: 10.99 })}>Add to Cart</button>
             </div>
           </div>
@@ -99,7 +99,7 @@ const FoodCollection = () => {
             <div className="food-item">
               <img src="A1.jpg" alt="Nasigoreng 1" />
               <h4>Spicy Nasigoreng</h4>
-              <p>$11.99</p>
+              <p>Rs. 11.99</p>
               <button onClick={() => addToCart({ id: 5, name: 'Spicy Nasigoreng', price: 11.99 })}>Add to Cart</button>
             </div>
           </div>
@@ -112,7 +112,7 @@ const FoodCollection = () => {
             <div className="food-item">
               <img src="A1.jpg" alt="Lemon Rice 1" />
               <h4>Lemon Rice</h4>
-              <p>$6.99</p>
+              <p>Rs. 6.99</p>
               <button onClick={() => addToCart({ id: 6, name: 'Lemon Rice', price: 6.99 })}>Add to Cart</button>
             </div>
           </div>
@@ -125,7 +125,7 @@ const FoodCollection = () => {
             <div className="food-item">
               <img src="A1.jpg" alt="String Hoppers Kottu 1" />
               <h4>Chicken Kottu</h4>
-              <p>$9.99</p>
+              <p>Rs. 9.99</p>
               <button onClick={() => addToCart({ id: 7, name: 'Chicken Kottu', price: 9.99 })}>Add to Cart</button>
             </div>
           </div>
@@ -138,13 +138,13 @@ const FoodCollection = () => {
             <div className="food-item">
               <img src="A1.jpg" alt="Curry 1" />
               <h4>Mutton Curry</h4>
-              <p>$12.99</p>
+              <p>Rs. 12.99</p>
               <button onClick={() => addToCart({ id: 8, name: 'Mutton Curry', price: 12.99 })}>Add to Cart</button>
             </div>
             <div className="food-item">
               <img src="A1.jpg" alt="Curry 2" />
               <h4>Fish Curry</h4>
-              <p>$10.99</p>
+              <p>Rs. 10.99</p>
               <button onClick={() => addToCart({ id: 9, name: 'Fish Curry', price: 10.99 })}>Add to Cart</button>
             </div>
           </div>
@@ -157,7 +157,7 @@ const FoodCollection = () => {
             <div className="food-item">
               <img src="A1.jpg" alt="Rotty Kothu 1" />
               <h4>Beef Kothu</h4>
-              <p>$11.99</p>
+              <p>Rs. 11.99</p>
               <button onClick={() => addToCart({ id: 10, name: 'Beef Kothu', price: 11.99 })}>Add to Cart</button>
             </div>
           </div>
@@ -210,13 +210,13 @@ const FoodCollection = () => {
             <div className="food-item">
               <img src="A1.jpg" alt="Dessert 1" />
               <h4>Chocolate Cake</h4>
-              <p>$5.99</p>
+              <p>Rs. 5.99</p>
               <button onClick={() => addToCart({ id: 5, name: 'Chocolate Cake', price: 5.99 })}>Add to Cart</button>
             </div>
             <div className="food-item">
               <img src="A1.jpg" alt="Dessert 2" />
               <h4>Ice Cream</h4>
-              <p>$3.99</p>
+              <p>Rs. 3.99</p>
               <button onClick={() => addToCart({ id: 6, name: 'Ice Cream', price: 3.99 })}>Add to Cart</button>
             </div>
           </div>

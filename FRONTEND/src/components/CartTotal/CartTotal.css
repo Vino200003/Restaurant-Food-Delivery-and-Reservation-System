@@ -78,6 +78,7 @@
   border: 1px solid #ddd;
   border-radius: 10px;
   background-color: #f9f9f9;
+  height:300px;
 }
 
 .order-summary h2 {

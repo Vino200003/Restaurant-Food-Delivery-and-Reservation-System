@@ -65,7 +65,7 @@ const CartTotal = () => {
                       </div>
                     </div>
                   </td>
-                  <td>${item.price.toFixed(2)}</td>
+                  <td>Rs.{item.price.toFixed(2)}</td>
                   <td>
                     <div className="quantity-controls">
                       <button onClick={() => handleQuantityChange(item.id, -1)}>
@@ -77,7 +77,7 @@ const CartTotal = () => {
                       </button>
                     </div>
                   </td>
-                  <td>${(item.price * item.quantity).toFixed(2)}</td>
+                  <td>Rs.{(item.price * item.quantity).toFixed(2)}</td>
                 </tr>
               ))}
             </tbody>
@@ -93,23 +93,23 @@ const CartTotal = () => {
           </p>
           <p>
             <span>Sub-Total:</span>
-            <span>${subtotal.toFixed(2)}</span>
+            <span>Rs.{subtotal.toFixed(2)}</span>
           </p>
           <p>
             <span>Shipping:</span>
-            <span>${shipping.toFixed(2)}</span>
+            <span>Rs.{shipping.toFixed(2)}</span>
           </p>
           <p>
             <span>Taxes:</span>
-            <span>${taxes.toFixed(2)}</span>
+            <span>Rs.{taxes.toFixed(2)}</span>
           </p>
           <p>
             <span>Coupon Discount:</span>
-            <span>-${couponDiscount.toFixed(2)}</span>
+            <span>-Rs.{couponDiscount.toFixed(2)}</span>
           </p>
           <h3>
             <span>Total:</span>
-            <span>${total.toFixed(2)}</span>
+            <span>Rs.{total.toFixed(2)}</span>
           </h3>
           <button className="checkout-btn">Proceed to Checkout</button>
         </div>
