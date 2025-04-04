@@ -1,28 +1,57 @@
 import React, { useState } from "react";
-import "./Signup.css"; 
+import "./Signup.css";
 
 const Signup = () => {
-  const [name, setName] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [phone, setPhone] = useState(""); 
-  const [address, setAddress] = useState(""); 
+  const [phone, setPhone] = useState("");
+  const [address, setAddress] = useState("");
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     // Validation logic
+    if (!firstName || !lastName || !email || !phone || !address) {
+      alert("All fields are required.");
+      return;
+    }
     if (password !== confirmPassword) {
       alert("Passwords do not match.");
       return;
     }
-//API call, validation
-    console.log("Name:", name);
-    console.log("Email:", email);
-    console.log("Phone:", phone);
-    console.log("Address:", address);
-    console.log("Password:", password);
+
+    try {
+      const response = await fetch("http://localhost:5000/api/users/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          first_name: firstName,
+          last_name: lastName,
+          email,
+          phone_number: phone,
+          address,
+          password,
+        }),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        alert(`Error: ${errorData.message}`);
+        return;
+      }
+
+      const data = await response.json();
+      alert("Registration successful!");
+      console.log("User registered:", data);
+    } catch (error) {
+      console.error("Error during registration:", error);
+      alert("An error occurred. Please try again.");
+    }
   };
 
   return (
@@ -30,12 +59,22 @@ const Signup = () => {
       <h2>Create an Account</h2>
       <form onSubmit={handleSubmit} className="signup-form">
         <div className="input-group">
-          <label htmlFor="name">Name</label>
+          <label htmlFor="firstName">First Name</label>
           <input
             type="text"
-            id="name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
+            id="firstName"
+            value={firstName}
+            onChange={(e) => setFirstName(e.target.value)}
+            required
+          />
+        </div>
+        <div className="input-group">
+          <label htmlFor="lastName">Last Name</label>
+          <input
+            type="text"
+            id="lastName"
+            value={lastName}
+            onChange={(e) => setLastName(e.target.value)}
             required
           />
         </div>
@@ -62,6 +101,7 @@ const Signup = () => {
         <div className="input-group">
           <label htmlFor="address">Address</label>
           <input
+            type="text"
             id="address"
             value={address}
             onChange={(e) => setAddress(e.target.value)}

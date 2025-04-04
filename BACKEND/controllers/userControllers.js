@@ -4,7 +4,7 @@ const db = require('../config/db');
 
 // Register a user
 exports.registerUser = async (req, res) => {
-  const { first_name, last_name, email, phone_number, address, city, password } = req.body;
+  const { first_name, last_name, email, phone_number, address,  password } = req.body;
 
   const query = 'SELECT * FROM Users WHERE email = ? OR phone_number = ?';
 
@@ -23,8 +23,8 @@ exports.registerUser = async (req, res) => {
         return res.status(500).json({ message: 'Password hashing error', error: err.message });
       }
 
-      const insertQuery = 'INSERT INTO Users (first_name, last_name, email, phone_number, address, city, password) VALUES (?, ?, ?, ?, ?, ?, ?)';
-      db.query(insertQuery, [first_name, last_name, email, phone_number, address, city, hashedPassword], (err, results) => {
+      const insertQuery = 'INSERT INTO Users (first_name, last_name, email, phone_number, address,  password) VALUES (?, ?, ?, ?, ?, ?)';
+      db.query(insertQuery, [first_name, last_name, email, phone_number, address,  hashedPassword], (err, results) => {
         if (err) {
           console.error('Database insert error:', err);  // Log the insert error
           return res.status(500).json({ message: 'Error inserting data into database', error: err.message });

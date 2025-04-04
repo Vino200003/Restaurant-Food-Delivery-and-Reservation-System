@@ -1,5 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const cors = require('cors'); // Import CORS
 require('dotenv').config();
 const userRoutes = require('./routes/userRoutes');
 const orderRoutes = require('./routes/orderRoutes');
@@ -16,7 +17,7 @@ const supplierRoutes = require('./routes/supplierRoutes');
 
 const app = express();
 
-// Middleware to parse incoming JSON requests
+app.use(cors()); // Enable CORS
 app.use(bodyParser.json());
 
 // Routes
