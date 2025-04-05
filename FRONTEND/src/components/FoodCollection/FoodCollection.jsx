@@ -1,19 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { categories, subcategories, menuItems } from '../../data/menuData';
 import './FoodCollection.css';
+import { CartContext } from '../../context/CartContext';
 
 const FoodCollection = () => {
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [selectedSubcategory, setSelectedSubcategory] = useState("");
   const [filteredItems, setFilteredItems] = useState(menuItems);
-  const [cart, setCart] = useState([]);
+  const { cart, addToCart, updateQuantity } = useContext(CartContext);
   const navigate = useNavigate();
 
   useEffect(() => {
-    const storedCart = JSON.parse(localStorage.getItem('cart')) || [];
-    setCart(storedCart);
-
     let filtered = menuItems;
     if (selectedCategory !== "All") {
       filtered = menuItems.filter(item => item.category === selectedCategory);
@@ -29,22 +27,14 @@ const FoodCollection = () => {
     setSelectedSubcategory("");
   };
 
-  const updateCart = (item, delta) => {
-    const updatedCart = [...cart];
-    const existingItem = updatedCart.find(cartItem => cartItem.id === item.id);
-
-    if (existingItem) {
-      existingItem.quantity += delta;
-      if (existingItem.quantity <= 0) {
-        const index = updatedCart.indexOf(existingItem);
-        updatedCart.splice(index, 1);
-      }
-    } else if (delta > 0) {
-      updatedCart.push({ ...item, quantity: 1 });
+  const handleUpdateCart = (item, delta) => {
+    if (delta > 0 && !getItemQuantity(item.id)) {
+      // If adding a new item
+      addToCart({ ...item, quantity: 1 });
+    } else {
+      // If updating quantity of existing item
+      updateQuantity(item.id, delta);
     }
-
-    setCart(updatedCart);
-    localStorage.setItem('cart', JSON.stringify(updatedCart));
   };
 
   const getItemQuantity = (itemId) => {
@@ -106,12 +96,12 @@ const FoodCollection = () => {
                     <div className="food-actions">
                       {quantity > 0 ? (
                         <>
-                          <button onClick={() => updateCart(item, -1)} className="quantity-btn">−</button>
+                          <button onClick={() => handleUpdateCart(item, -1)} className="quantity-btn">−</button>
                           <span className="quantity">{quantity}</span>
-                          <button onClick={() => updateCart(item, 1)} className="quantity-btn">+</button>
+                          <button onClick={() => handleUpdateCart(item, 1)} className="quantity-btn">+</button>
                         </>
                       ) : (
-                        <button onClick={() => updateCart(item, 1)} className="add-to-cart-btn">Add to Cart</button>
+                        <button onClick={() => handleUpdateCart(item, 1)} className="add-to-cart-btn">Add to Cart</button>
                       )}
                     </div>
                   </div>
