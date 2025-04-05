@@ -1,385 +1,130 @@
-import React, { useContext } from 'react';
-import { CartContext } from '../../context/CartContext'; // Import CartContext
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { categories, subcategories, menuItems } from '../../data/menuData';
 import './FoodCollection.css';
 
 const FoodCollection = () => {
-  const { cart, addToCart, updateQuantity } = useContext(CartContext); // Access cart and actions
+  const [selectedCategory, setSelectedCategory] = useState("All");
+  const [selectedSubcategory, setSelectedSubcategory] = useState("");
+  const [filteredItems, setFilteredItems] = useState(menuItems);
+  const [cart, setCart] = useState([]);
+  const navigate = useNavigate();
 
-  const getCartItem = (id) => cart.find((item) => item.id === id);
+  useEffect(() => {
+    const storedCart = JSON.parse(localStorage.getItem('cart')) || [];
+    setCart(storedCart);
+
+    let filtered = menuItems;
+    if (selectedCategory !== "All") {
+      filtered = menuItems.filter(item => item.category === selectedCategory);
+      if (selectedCategory === "Curries" && selectedSubcategory) {
+        filtered = filtered.filter(item => item.subcategory === selectedSubcategory);
+      }
+    }
+    setFilteredItems(filtered);
+  }, [selectedCategory, selectedSubcategory]);
+
+  const handleCategoryChange = (category) => {
+    setSelectedCategory(category);
+    setSelectedSubcategory("");
+  };
+
+  const updateCart = (item, delta) => {
+    const updatedCart = [...cart];
+    const existingItem = updatedCart.find(cartItem => cartItem.id === item.id);
+
+    if (existingItem) {
+      existingItem.quantity += delta;
+      if (existingItem.quantity <= 0) {
+        const index = updatedCart.indexOf(existingItem);
+        updatedCart.splice(index, 1);
+      }
+    } else if (delta > 0) {
+      updatedCart.push({ ...item, quantity: 1 });
+    }
+
+    setCart(updatedCart);
+    localStorage.setItem('cart', JSON.stringify(updatedCart));
+  };
+
+  const getItemQuantity = (itemId) => {
+    const item = cart.find(cartItem => cartItem.id === itemId);
+    return item ? item.quantity : 0;
+  };
 
   return (
-    <>
-      <div className="menu-container">
-        {/* Category Menu */}
-        <div className="category-menu">
-          <h3>Categories</h3>
-          <ul>
-            <li><a href="#rice-curries-section" className="category-link">Rice & Curries</a></li>
-            <li><a href="#fried-rice-section" className="category-link">Fried Rice</a></li>
-            <li><a href="#biryani-section" className="category-link">Biryani</a></li>
-            <li><a href="#nasigoreng-section" className="category-link">Nasigoreng</a></li>
-            <li><a href="#lemon-rice-section" className="category-link">Lemon Rice</a></li>
-            <li><a href="#string-hoppers-kottu-section" className="category-link">String Hoppers Kottu</a></li>
-            <li><a href="#curries-section" className="category-link">Curries</a></li>
-            <li><a href="#rotty-kothu-section" className="category-link">Rotty Kothu</a></li>
-            <li><a href="#noodles-section" className="category-link">Noodles</a></li>
-            <li><a href="#dolohin-section" className="category-link">Dolohin</a></li>
-            <li><a href="#cheese-koththu-section" className="category-link">Cheese Koththu</a></li>
-            <li><a href="#soup-section" className="category-link">Soup</a></li>
-            <li><a href="#soft-drinks-section" className="category-link">Soft Drinks</a></li>
-            <li><a href="#dessert-section" className="category-link">Dessert</a></li>
-            <li><a href="#mineral-water-section" className="category-link">Mineral Water</a></li>
-            <li><a href="#appetizer-section" className="category-link">Appetizer</a></li>
-          </ul>
-        </div>
-
-        {/* Food Items */}
-        <div className="food-items">
-          {/* Rice & Curries Section */}
-          <div id="rice-curries-section" className="category-section">
-            <h3>Rice & Curries</h3>
-            <div className="food-item-list">
-              <div className="food-item">
-                <img src="A1.jpg" alt="Rice & Curry 1" />
-                <h4>Chicken Curry</h4>
-                <p>Rs. 8.99</p>
-                {getCartItem(101) ? (
-                  <div className="quantity-controls">
-                    <button onClick={() => updateQuantity(101, -1)}>−</button>
-                    <span>{getCartItem(101).quantity}</span>
-                    <button onClick={() => updateQuantity(101, 1)}>+</button>
-                  </div>
-                ) : (
-                  <button onClick={() => addToCart({ id: 101, name: 'Chicken Curry', price: 8.99, quantity: 1 })}>
-                    Add to Cart
-                  </button>
-                )}
-              </div>
-              <div className="food-item">
-                <img src="A1.jpg" alt="Rice & Curry 2" />
-                <h4>Vegetable Curry</h4>
-                <p>Rs. 7.99</p>
-                {getCartItem(102) ? (
-                  <div className="quantity-controls">
-                    <button onClick={() => updateQuantity(102, -1)}>−</button>
-                    <span>{getCartItem(102).quantity}</span>
-                    <button onClick={() => updateQuantity(102, 1)}>+</button>
-                  </div>
-                ) : (
-                  <button onClick={() => addToCart({ id: 102, name: 'Vegetable Curry', price: 7.99, quantity: 1 })}>
-                    Add to Cart
-                  </button>
-                )}
-              </div>
-            </div>
-          </div>
-
-          {/* Fried Rice Section */}
-          <div id="fried-rice-section" className="category-section">
-            <h3>Fried Rice</h3>
-            <div className="food-item-list">
-              <div className="food-item">
-                <img src="A1.jpg" alt="Fried Rice 1" />
-                <h4>Egg Fried Rice</h4>
-                <p>Rs. 9.99</p>
-                {getCartItem(103) ? (
-                  <div className="quantity-controls">
-                    <button onClick={() => updateQuantity(103, -1)}>−</button>
-                    <span>{getCartItem(103).quantity}</span>
-                    <button onClick={() => updateQuantity(103, 1)}>+</button>
-                  </div>
-                ) : (
-                  <button onClick={() => addToCart({ id: 103, name: 'Egg Fried Rice', price: 9.99, quantity: 1 })}>
-                    Add to Cart
-                  </button>
-                )}
-              </div>
-              <div className="food-item">
-                <img src="A1.jpg" alt="Fried Rice 2" />
-                <h4>Chicken Fried Rice</h4>
-                <p>Rs. 10.99</p>
-                {getCartItem(104) ? (
-                  <div className="quantity-controls">
-                    <button onClick={() => updateQuantity(104, -1)}>−</button>
-                    <span>{getCartItem(104).quantity}</span>
-                    <button onClick={() => updateQuantity(104, 1)}>+</button>
-                  </div>
-                ) : (
-                  <button onClick={() => addToCart({ id: 104, name: 'Chicken Fried Rice', price: 10.99, quantity: 1 })}>
-                    Add to Cart
-                  </button>
-                )}
-              </div>
-            </div>
-          </div>
-
-          {/* Biryani Section */}
-          <div id="biryani-section" className="category-section">
-            <h3>Biryani</h3>
-            <div className="food-item-list">
-              <div className="food-item">
-                <img src="A1.jpg" alt="Biryani 1" />
-                <h4>Chicken Biryani</h4>
-                <p>Rs. 12.99</p>
-                {getCartItem(105) ? (
-                  <div className="quantity-controls">
-                    <button onClick={() => updateQuantity(105, -1)}>−</button>
-                    <span>{getCartItem(105).quantity}</span>
-                    <button onClick={() => updateQuantity(105, 1)}>+</button>
-                  </div>
-                ) : (
-                  <button onClick={() => addToCart({ id: 105, name: 'Chicken Biryani', price: 12.99, quantity: 1 })}>
-                    Add to Cart
-                  </button>
-                )}
-              </div>
-              <div className="food-item">
-                <img src="A1.jpg" alt="Biryani 2" />
-                <h4>Veg Biryani</h4>
-                <p>Rs. 10.99</p>
-                {getCartItem(106) ? (
-                  <div className="quantity-controls">
-                    <button onClick={() => updateQuantity(106, -1)}>−</button>
-                    <span>{getCartItem(106).quantity}</span>
-                    <button onClick={() => updateQuantity(106, 1)}>+</button>
-                  </div>
-                ) : (
-                  <button onClick={() => addToCart({ id: 106, name: 'Veg Biryani', price: 10.99, quantity: 1 })}>
-                    Add to Cart
-                  </button>
-                )}
-              </div>
-            </div>
-          </div>
-
-          {/* Nasigoreng Section */}
-          <div id="nasigoreng-section" className="category-section">
-            <h3>Nasigoreng</h3>
-            <div className="food-item-list">
-              <div className="food-item">
-                <img src="A1.jpg" alt="Nasigoreng 1" />
-                <h4>Spicy Nasigoreng</h4>
-                <p>Rs. 11.99</p>
-                {getCartItem(107) ? (
-                  <div className="quantity-controls">
-                    <button onClick={() => updateQuantity(107, -1)}>−</button>
-                    <span>{getCartItem(107).quantity}</span>
-                    <button onClick={() => updateQuantity(107, 1)}>+</button>
-                  </div>
-                ) : (
-                  <button onClick={() => addToCart({ id: 107, name: 'Spicy Nasigoreng', price: 11.99, quantity: 1 })}>
-                    Add to Cart
-                  </button>
-                )}
-              </div>
-            </div>
-          </div>
-
-          {/* Lemon Rice Section */}
-          <div id="lemon-rice-section" className="category-section">
-            <h3>Lemon Rice</h3>
-            <div className="food-item-list">
-              <div className="food-item">
-                <img src="A1.jpg" alt="Lemon Rice 1" />
-                <h4>Lemon Rice</h4>
-                <p>Rs. 6.99</p>
-                {getCartItem(108) ? (
-                  <div className="quantity-controls">
-                    <button onClick={() => updateQuantity(108, -1)}>−</button>
-                    <span>{getCartItem(108).quantity}</span>
-                    <button onClick={() => updateQuantity(108, 1)}>+</button>
-                  </div>
-                ) : (
-                  <button onClick={() => addToCart({ id: 108, name: 'Lemon Rice', price: 6.99, quantity: 1 })}>
-                    Add to Cart
-                  </button>
-                )}
-              </div>
-            </div>
-          </div>
-
-          {/* String Hoppers Kottu Section */}
-          <div id="string-hoppers-kottu-section" className="category-section">
-            <h3>String Hoppers Kottu</h3>
-            <div className="food-item-list">
-              <div className="food-item">
-                <img src="A1.jpg" alt="String Hoppers Kottu 1" />
-                <h4>Chicken Kottu</h4>
-                <p>Rs. 9.99</p>
-                {getCartItem(109) ? (
-                  <div className="quantity-controls">
-                    <button onClick={() => updateQuantity(109, -1)}>−</button>
-                    <span>{getCartItem(109).quantity}</span>
-                    <button onClick={() => updateQuantity(109, 1)}>+</button>
-                  </div>
-                ) : (
-                  <button onClick={() => addToCart({ id: 109, name: 'Chicken Kottu', price: 9.99, quantity: 1 })}>
-                    Add to Cart
-                  </button>
-                )}
-              </div>
-            </div>
-          </div>
-
-          {/* Curries Section */}
-          <div id="curries-section" className="category-section">
-            <h3>Curries</h3>
-            <div className="food-item-list">
-              <div className="food-item">
-                <img src="A1.jpg" alt="Curry 1" />
-                <h4>Mutton Curry</h4>
-                <p>Rs. 12.99</p>
-                {getCartItem(110) ? (
-                  <div className="quantity-controls">
-                    <button onClick={() => updateQuantity(110, -1)}>−</button>
-                    <span>{getCartItem(110).quantity}</span>
-                    <button onClick={() => updateQuantity(110, 1)}>+</button>
-                  </div>
-                ) : (
-                  <button onClick={() => addToCart({ id: 110, name: 'Mutton Curry', price: 12.99, quantity: 1 })}>
-                    Add to Cart
-                  </button>
-                )}
-              </div>
-              <div className="food-item">
-                <img src="A1.jpg" alt="Curry 2" />
-                <h4>Fish Curry</h4>
-                <p>Rs. 10.99</p>
-                {getCartItem(111) ? (
-                  <div className="quantity-controls">
-                    <button onClick={() => updateQuantity(111, -1)}>−</button>
-                    <span>{getCartItem(111).quantity}</span>
-                    <button onClick={() => updateQuantity(111, 1)}>+</button>
-                  </div>
-                ) : (
-                  <button onClick={() => addToCart({ id: 111, name: 'Fish Curry', price: 10.99, quantity: 1 })}>
-                    Add to Cart
-                  </button>
-                )}
-              </div>
-            </div>
-          </div>
-
-          {/* Rotty Kothu Section */}
-          <div id="rotty-kothu-section" className="category-section">
-            <h3>Rotty Kothu</h3>
-            <div className="food-item-list">
-              <div className="food-item">
-                <img src="A1.jpg" alt="Rotty Kothu 1" />
-                <h4>Beef Kothu</h4>
-                <p>Rs. 11.99</p>
-                {getCartItem(112) ? (
-                  <div className="quantity-controls">
-                    <button onClick={() => updateQuantity(112, -1)}>−</button>
-                    <span>{getCartItem(112).quantity}</span>
-                    <button onClick={() => updateQuantity(112, 1)}>+</button>
-                  </div>
-                ) : (
-                  <button onClick={() => addToCart({ id: 112, name: 'Beef Kothu', price: 11.99, quantity: 1 })}>
-                    Add to Cart
-                  </button>
-                )}
-              </div>
-            </div>
-          </div>
-
-          {/* Noodles Section */}
-          <div id="noodles-section" className="category-section">
-            <h3>Noodles</h3>
-            <div className="food-item-list">
-              {/* Add items for Noodles */}
-            </div>
-          </div>
-
-          {/* Dolohin Section */}
-          <div id="dolohin-section" className="category-section">
-            <h3>Dolohin</h3>
-            <div className="food-item-list">
-              {/* Add items for Dolohin */}
-            </div>
-          </div>
-
-          {/* Cheese Koththu Section */}
-          <div id="cheese-koththu-section" className="category-section">
-            <h3>Cheese Koththu</h3>
-            <div className="food-item-list">
-              {/* Add items for Cheese Koththu */}
-            </div>
-          </div>
-
-          {/* Soup Section */}
-          <div id="soup-section" className="category-section">
-            <h3>Soup</h3>
-            <div className="food-item-list">
-              {/* Add items for Soup */}
-            </div>
-          </div>
-
-          {/* Soft Drinks Section */}
-          <div id="soft-drinks-section" className="category-section">
-            <h3>Soft Drinks</h3>
-            <div className="food-item-list">
-              {/* Add items for Soft Drinks */}
-            </div>
-          </div>
-
-          {/* Dessert Section */}
-          <div id="dessert-section" className="category-section">
-            <h3>Dessert</h3>
-            <div className="food-item-list">
-              <div className="food-item">
-                <img src="A1.jpg" alt="Dessert 1" />
-                <h4>Chocolate Cake</h4>
-                <p>Rs. 5.99</p>
-                {getCartItem(113) ? (
-                  <div className="quantity-controls">
-                    <button onClick={() => updateQuantity(113, -1)}>−</button>
-                    <span>{getCartItem(113).quantity}</span>
-                    <button onClick={() => updateQuantity(113, 1)}>+</button>
-                  </div>
-                ) : (
-                  <button onClick={() => addToCart({ id: 113, name: 'Chocolate Cake', price: 5.99, quantity: 1 })}>
-                    Add to Cart
-                  </button>
-                )}
-              </div>
-              <div className="food-item">
-                <img src="A1.jpg" alt="Dessert 2" />
-                <h4>Ice Cream</h4>
-                <p>Rs. 3.99</p>
-                {getCartItem(114) ? (
-                  <div className="quantity-controls">
-                    <button onClick={() => updateQuantity(114, -1)}>−</button>
-                    <span>{getCartItem(114).quantity}</span>
-                    <button onClick={() => updateQuantity(114, 1)}>+</button>
-                  </div>
-                ) : (
-                  <button onClick={() => addToCart({ id: 114, name: 'Ice Cream', price: 3.99, quantity: 1 })}>
-                    Add to Cart
-                  </button>
-                )}
-              </div>
-            </div>
-          </div>
-
-          {/* Mineral Water Section */}
-          <div id="mineral-water-section" className="category-section">
-            <h3>Mineral Water</h3>
-            <div className="food-item-list">
-              {/* Add items for Mineral Water */}
-            </div>
-          </div>
-
-          {/* Appetizer Section */}
-          <div id="appetizer-section" className="category-section">
-            <h3>Appetizer</h3>
-            <div className="food-item-list">
-              {/* Add items for Appetizer */}
-            </div>
-          </div>
-        </div>
+    <div className="menu-container">
+      <header className="menu-header">
+        <h1>Our Menu</h1>
+        <p>Explore our diverse menu featuring authentic dishes prepared with the finest ingredients and traditional cooking methods.</p>
+        
+      </header>
+      
+      <div className="category-scroll">
+        {categories.map((category) => (
+          <button
+            key={category}
+            onClick={() => handleCategoryChange(category)}
+            className={`category-button ${selectedCategory === category ? 'active' : ''}`}
+          >
+            {category}
+          </button>
+        ))}
       </div>
-    </>
+      
+      {selectedCategory === "Curries" && subcategories.Curries && (
+        <div className="subcategory-scroll">
+          <button
+            onClick={() => setSelectedSubcategory("")}
+            className={`subcategory-button ${selectedSubcategory === "" ? 'active' : ''}`}
+          >
+            All Curries
+          </button>
+          {subcategories.Curries.map((sub) => (
+            <button
+              key={sub}
+              onClick={() => setSelectedSubcategory(sub)}
+              className={`subcategory-button ${selectedSubcategory === sub ? 'active' : ''}`}
+            >
+              {sub}
+            </button>
+          ))}
+        </div>
+      )}
+      
+      <div className="food-grid">
+        {filteredItems.length > 0 ? (
+          filteredItems.map((item) => {
+            const quantity = getItemQuantity(item.id);
+            return (
+              <div key={item.id} className="food-card">
+                <img src={item.image} alt={item.name} className="food-image" />
+                <div className="food-details">
+                  <h3>{item.name}</h3>
+                  <div className="price-and-actions">
+                    <span className="food-price">Rs. {item.price.toFixed(2)}</span>
+                    <div className="food-actions">
+                      {quantity > 0 ? (
+                        <>
+                          <button onClick={() => updateCart(item, -1)} className="quantity-btn">−</button>
+                          <span className="quantity">{quantity}</span>
+                          <button onClick={() => updateCart(item, 1)} className="quantity-btn">+</button>
+                        </>
+                      ) : (
+                        <button onClick={() => updateCart(item, 1)} className="add-to-cart-btn">Add to Cart</button>
+                      )}
+                    </div>
+                  </div>
+                  {item.subcategory && <span className="food-subcategory">{item.subcategory}</span>}
+                </div>
+              </div>
+            );
+          })
+        ) : (
+          <p className="no-items">No items found for the selected category or subcategory.</p>
+        )}
+      </div>
+    </div>
   );
 };
 

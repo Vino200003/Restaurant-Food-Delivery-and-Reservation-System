@@ -1,11 +1,12 @@
 import React, { useContext } from "react";
-import { NavLink } from "react-router-dom"; // Use NavLink for active link styling
+import { NavLink, useNavigate } from "react-router-dom"; // Use NavLink for active link styling and import useNavigate
 import { BiCart } from "react-icons/bi"; // Import Cart Icon
 import { CartContext } from "../../context/CartContext"; // Import CartContext
 import "./Navbar.css";
 
 const Navbar = () => {
   const { cart } = useContext(CartContext); // Access cart from context
+  const navigate = useNavigate(); // Initialize useNavigate
 
   // Calculate total quantity of items in the cart
   const totalQuantity = cart.reduce((total, item) => total + item.quantity, 0);
@@ -60,12 +61,14 @@ const Navbar = () => {
         <NavLink to="/signup" aria-label="Sign up for an account">
           <button className="signup-btn">Signup</button>
         </NavLink>
-        <NavLink to="/cart" aria-label="View your cart">
-          <button className="cart-btn">
-            <BiCart className="cart-icon" />
-            {totalQuantity > 0 && <span className="cart-qty">{totalQuantity}</span>}
-          </button>
-        </NavLink>
+        <button
+          className="cart-btn"
+          onClick={() => navigate('/cart')} // Navigate to the cart page
+          aria-label="View your cart"
+        >
+          <BiCart className="cart-icon" />
+          {totalQuantity > 0 && <span className="cart-qty">{totalQuantity}</span>}
+        </button>
       </div>
     </nav>
   );

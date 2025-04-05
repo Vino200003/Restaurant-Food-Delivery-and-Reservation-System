@@ -9,23 +9,28 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch("/api/login", {
+      const response = await fetch("http://localhost:5000/api/users/login", { // Updated API endpoint
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password }),
       });
+
       if (!response.ok) {
-        throw new Error("Invalid credentials");
+        const errorData = await response.json();
+        throw new Error(errorData.message || "Invalid credentials");
       }
+
       const data = await response.json();
       console.log("Login successful:", data);
+      alert("Login successful!");
+      // Optionally, store the token in localStorage or context
+      localStorage.setItem("token", data.token);
     } catch (error) {
       console.error("Login failed:", error.message);
-      alert("Login failed. Please try again.");
+      alert(error.message || "Login failed. Please try again.");
     }
   };
 
-  
   return (
     <div className="login-container">
       <h2>Login</h2>
