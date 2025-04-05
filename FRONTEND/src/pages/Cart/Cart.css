@@ -47,3 +47,34 @@
   display: flex;
   justify-content: space-between;
 }
+
+.empty-cart {
+  text-align: center;
+  margin-top: 100px;
+  margin-bottom: 100px;
+}
+
+.empty-cart p {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+.empty-cart-icon {
+  font-size: 50px;
+  color:rgb(196, 131, 99);
+  margin-bottom: 20px;
+}
+
+.browse-menu-btn {
+  padding: 10px 20px;
+  background-color: #c49b63;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.browse-menu-btn:hover {
+  background-color: #a47b50;
+}

@@ -67,7 +67,8 @@ const Navbar = () => {
           aria-label="View your cart"
         >
           <BiCart className="cart-icon" />
-          {totalQuantity > 0 && <span className="cart-qty">{totalQuantity}</span>}
+          <span className="cart-qty">0</span>
+          {/* /{totalQuantity > 0 && <span className="cart-qty">{totalQuantity}</span>} */}
         </button>
       </div>
     </nav>

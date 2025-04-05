@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import './Cart.css';
 import { useNavigate } from 'react-router-dom'; // Import useNavigate
-import Navbar from '../../components/Navbar/Navbar';
-import CartTotal from '../../components/CartTotal/CartTotal';
 import Footer from '../../components/Footer/Footer';
+import { FaShoppingCart } from 'react-icons/fa'; // Import FontAwesome shopping cart icon
 
 const Cart = () => {
   const [cart, setCart] = useState([]);
@@ -35,12 +34,25 @@ const Cart = () => {
     navigate('/checkout'); // Redirect to the checkout page
   };
 
+  const handleBrowseMenu = () => {
+    navigate('/menu'); // Redirect to the menu page
+  };
+
   return (
     <div className="cart-container">
       <h1>Shopping Cart</h1>
-      <div className="cart-content">
-        <div className="cart-items">
-          {cart.length > 0 ? (
+      {cart.length === 0 ? (
+        <div className="empty-cart">
+          <FaShoppingCart className="empty-cart-icon" /> {/* Add shopping cart icon */}
+          <p>Your cart is empty</p>
+          <p>Looks like you haven't added any items to your cart yet.</p>
+          <button onClick={handleBrowseMenu} className="browse-menu-btn">
+            Browse Our Menu
+          </button>
+        </div>
+      ) : (
+        <div className="cart-content">
+          <div className="cart-items">
             <table>
               <thead>
                 <tr>
@@ -65,19 +77,17 @@ const Cart = () => {
                 ))}
               </tbody>
             </table>
-          ) : (
-            <p>Your cart is empty.</p>
-          )}
+          </div>
+          <div className="order-summary">
+            <h2>Order Summary</h2>
+            <p>Subtotal: ${subtotal.toFixed(2)}</p>
+            <p>Shipping: ${shipping.toFixed(2)}</p>
+            <p>Taxes: ${taxes.toFixed(2)}</p>
+            <h3>Total: ${total.toFixed(2)}</h3>
+            <button onClick={handleCheckout}>Proceed to Checkout</button>
+          </div>
         </div>
-        <div className="order-summary">
-          <h2>Order Summary</h2>
-          <p>Subtotal: ${subtotal.toFixed(2)}</p>
-          <p>Shipping: ${shipping.toFixed(2)}</p>
-          <p>Taxes: ${taxes.toFixed(2)}</p>
-          <h3>Total: ${total.toFixed(2)}</h3>
-          <button onClick={handleCheckout}>Proceed to Checkout</button>
-        </div>
-      </div>
+      )}
       <Footer />
     </div>
   );
