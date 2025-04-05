@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import './Cart.css';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate
+import { useNavigate } from 'react-router-dom';
 import Footer from '../../components/Footer/Footer';
-import { FaShoppingCart } from 'react-icons/fa'; // Import FontAwesome shopping cart icon
+import { FaRegTrashAlt } from 'react-icons/fa';
 
 const Cart = () => {
   const [cart, setCart] = useState([]);
-  const navigate = useNavigate(); // Initialize useNavigate
+  const navigate = useNavigate();
 
   useEffect(() => {
     const storedCart = JSON.parse(localStorage.getItem('cart')) || [];
@@ -22,72 +22,79 @@ const Cart = () => {
     localStorage.setItem('cart', JSON.stringify(updatedCart));
   };
 
+  const deleteItem = (id) => {
+    const updatedCart = cart.filter(item => item.id !== id);
+    setCart(updatedCart);
+    localStorage.setItem('cart', JSON.stringify(updatedCart));
+  };
+
   const calculateSubtotal = () =>
     cart.reduce((total, item) => total + item.price * item.quantity, 0);
 
   const subtotal = calculateSubtotal();
-  const shipping = 5.0; // Example shipping fee
-  const taxes = subtotal * 0.1; // Example tax rate (10%)
-  const total = subtotal + shipping + taxes;
+  const deliveryFee = 3.99;
+  const tax = subtotal * 0.08;
+  const total = subtotal + deliveryFee + tax;
 
   const handleCheckout = () => {
-    navigate('/checkout'); // Redirect to the checkout page
-  };
-
-  const handleBrowseMenu = () => {
-    navigate('/menu'); // Redirect to the menu page
+    navigate('/checkout');
   };
 
   return (
-    <div className="cart-container">
-      <h1>Shopping Cart</h1>
-      {cart.length === 0 ? (
-        <div className="empty-cart">
-          <FaShoppingCart className="empty-cart-icon" /> {/* Add shopping cart icon */}
-          <p>Your cart is empty</p>
-          <p>Looks like you haven't added any items to your cart yet.</p>
-          <button onClick={handleBrowseMenu} className="browse-menu-btn">
-            Browse Our Menu
-          </button>
-        </div>
-      ) : (
-        <div className="cart-content">
-          <div className="cart-items">
-            <table>
-              <thead>
-                <tr>
-                  <th>Product</th>
-                  <th>Price</th>
-                  <th>Quantity</th>
-                  <th>Subtotal</th>
-                </tr>
-              </thead>
-              <tbody>
-                {cart.map(item => (
-                  <tr key={item.id}>
-                    <td>{item.name}</td>
-                    <td>${item.price.toFixed(2)}</td>
-                    <td>
-                      <button onClick={() => updateQuantity(item.id, -1)}>-</button>
-                      <span>{item.quantity}</span>
-                      <button onClick={() => updateQuantity(item.id, 1)}>+</button>
-                    </td>
-                    <td>${(item.price * item.quantity).toFixed(2)}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-          <div className="order-summary">
-            <h2>Order Summary</h2>
-            <p>Subtotal: ${subtotal.toFixed(2)}</p>
-            <p>Shipping: ${shipping.toFixed(2)}</p>
-            <p>Taxes: ${taxes.toFixed(2)}</p>
-            <h3>Total: ${total.toFixed(2)}</h3>
-            <button onClick={handleCheckout}>Proceed to Checkout</button>
+    <div className="cart-page">
+      <div className="cart-header">
+        <h1>Your Cart</h1>
+        <p>You have {cart.length} {cart.length === 1 ? 'item' : 'items'} in your cart</p>
+      </div>
+      <div className="cart-container">
+        <div className="cart-items">
+          <h2>Cart Items</h2>
+          {cart.length > 0 ? (
+            cart.map(item => (
+              <div key={item.id} className="cart-item">
+                <img src={item.image} alt={item.name} className="cart-item-image small" />
+                <div className="cart-item-details">
+                  <h3>{item.name}</h3>
+                  <p>Rs. {item.price.toFixed(2)}</p>
+                </div>
+                <div className="cart-item-quantity">
+                  <button onClick={() => updateQuantity(item.id, -1)}>-</button>
+                  <span>{item.quantity}</span>
+                  <button onClick={() => updateQuantity(item.id, 1)}>+</button>
+                </div>
+                <p className="cart-item-total">Rs. {(item.price * item.quantity).toFixed(2)}</p>
+                <FaRegTrashAlt className="delete-icon" onClick={() => deleteItem(item.id)} />
+              </div>
+            ))
+          ) : (
+            <p className="no-items">Your cart is empty. Add items to proceed.</p>
+          )}
+          <div className="cart-actions">
+            <button onClick={() => setCart([])}>Clear Cart</button>
+            <button onClick={() => navigate('/menu')}>Continue Shopping</button>
           </div>
         </div>
-      )}
+        <div className="order-summary">
+          <h2>Order Summary</h2>
+          <div className="summary-item">
+            <span>Subtotal:</span>
+            <span>Rs. {subtotal.toFixed(2)}</span>
+          </div>
+          <div className="summary-item">
+            <span>Delivery Fee:</span>
+            <span>Rs. {deliveryFee.toFixed(2)}</span>
+          </div>
+          <div className="summary-item">
+            <span>Tax (8%):</span>
+            <span>Rs. {tax.toFixed(2)}</span>
+          </div>
+          <div className="summary-item total">
+            <span>Total:</span>
+            <span>Rs. {total.toFixed(2)}</span>
+          </div>
+          <button onClick={handleCheckout} className="checkout-btn">Proceed to Checkout</button>
+        </div>
+      </div>
       <Footer />
     </div>
   );
