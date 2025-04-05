@@ -31,7 +31,11 @@ const Cart = () => {
   const calculateSubtotal = () =>
     cart.reduce((total, item) => total + item.price * item.quantity, 0);
 
+  const calculateTotalItems = () =>
+    cart.reduce((total, item) => total + item.quantity, 0);
+
   const subtotal = calculateSubtotal();
+  const totalItems = calculateTotalItems();
   const deliveryFee = 3.99;
   const tax = subtotal * 0.08;
   const total = subtotal + deliveryFee + tax;
@@ -76,6 +80,10 @@ const Cart = () => {
         </div>
         <div className="order-summary">
           <h2>Order Summary</h2>
+          <div className="summary-item">
+            <span>Total Items:</span>
+            <span>{totalItems}</span>
+          </div>
           <div className="summary-item">
             <span>Subtotal:</span>
             <span>Rs. {subtotal.toFixed(2)}</span>

@@ -68,7 +68,6 @@ const Navbar = () => {
         >
           <BiCart className="cart-icon" />
           <span className="cart-qty">0</span>
-          {/* /{totalQuantity > 0 && <span className="cart-qty">{totalQuantity}</span>} */}
         </button>
       </div>
     </nav>
