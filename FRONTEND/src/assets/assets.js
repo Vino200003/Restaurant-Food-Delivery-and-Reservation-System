@@ -11,6 +11,7 @@ import header6 from './header6.png'
 import About from './About.png'
 import A1 from './A1.jpg'
 import R1 from './R1.jpg'
+import RT1 from './RT1.jpg'
 
 
 
@@ -28,6 +29,7 @@ export const assets = {
     About: About,
     A1:A1,
     R1:R1,
+    RT1: RT1,
     
     
 }
