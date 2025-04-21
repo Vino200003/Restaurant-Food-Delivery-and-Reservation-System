@@ -25,6 +25,96 @@ html, body {
     /* box-shadow: none; */
 }
 
+.navbar-actions {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+}
+
+.navbar-search {
+    display: flex;
+    align-items: center;
+    background: rgb(55, 53, 53);
+    border: 1px solid #c49b63;
+    border-radius: 8px;
+    padding: 0 12px;
+    height: 38px;
+    min-width: 200px;
+    margin-right: 10px;
+}
+
+.search-icon {
+    margin-right: 6px;
+    display: flex;
+    align-items: center;
+}
+
+.search-input {
+    border: none;
+    outline: none;
+    background: transparent;
+    font-size: 1rem;
+    color: #fff;
+    width: 120px;
+}
+
+.notification-wrapper {
+    position: relative;
+}
+
+.icon-btn {
+    background: none;
+    border: none;
+    color: #c49b63;
+    cursor: pointer;
+    padding: 6px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.notification-badge {
+    position: absolute;
+    top: -4px;
+    right: -4px;
+    background: #e53935;
+    color: #fff;
+    font-size: 0.75rem;
+    font-weight: bold;
+    border-radius: 50%;
+    padding: 2px 6px;
+    min-width: 16px;
+    text-align: center;
+    border: 2px solid rgb(43, 41, 41);
+    line-height: 1;
+}
+
+.profile-section {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-left: 10px;
+    margin-right: 100px;
+}
+
+.profile-avatar {
+    background: #fbe9e7;
+    border-radius: 50%;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.profile-name {
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 500;
+    letter-spacing: 0.2px;
+}
+
 /* Optional: Add padding-top to the main content to prevent it from being hidden under the fixed navbar */
 /*
 .main-content {
