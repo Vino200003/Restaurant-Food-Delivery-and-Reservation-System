@@ -6,9 +6,16 @@ const reservations = [
   { name: "Robert Chen", time: "7:15 PM", guests: 6, status: "Pending" }
 ];
 
-const statusColor = {
-  Confirmed: "#22c55e",
-  Pending: "#f59e42"
+// Black/white badge style
+const badgeStyle = {
+  border: "1px solid #222",
+  color: "#222",
+  background: "#fff",
+  borderRadius: 6,
+  padding: "2px 10px",
+  fontSize: 13,
+  fontWeight: 600,
+  display: "inline-block"
 };
 
 const ReservationsPanel = () => (
@@ -40,14 +47,7 @@ const ReservationsPanel = () => (
             <div style={{ fontWeight: 600 }}>{r.name}</div>
             <div style={{ fontSize: 13, color: "#888" }}>{r.time} &nbsp;·&nbsp; {r.guests} guests</div>
           </div>
-          <span style={{
-            background: statusColor[r.status],
-            color: "#fff",
-            borderRadius: 6,
-            padding: "2px 10px",
-            fontSize: 13,
-            fontWeight: 600
-          }}>{r.status}</span>
+          <span style={badgeStyle}>{r.status}</span>
         </div>
       ))}
     </div>

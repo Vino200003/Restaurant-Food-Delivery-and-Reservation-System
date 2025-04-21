@@ -8,16 +8,16 @@ const orders = [
   { id: "ORD-1230", customer: "Lisa Thompson", type: "Pickup", status: "Ready", items: 2, total: "$24.50", time: "2 hr ago" }
 ];
 
-const typeColor = {
-  "Delivery": "#3b82f6",
-  "Pickup": "#a855f7",
-  "Dine-In": "#f59e42"
-};
-
-const statusColor = {
-  "Completed": "#22c55e",
-  "In Progress": "#3b82f6",
-  "Ready": "#f59e42"
+// Black/white badge style
+const badgeStyle = {
+  border: "1px solid #222",
+  color: "#222",
+  background: "#fff",
+  borderRadius: 6,
+  padding: "2px 10px",
+  fontSize: 13,
+  fontWeight: 600,
+  display: "inline-block"
 };
 
 const RecentOrders = () => (
@@ -51,24 +51,10 @@ const RecentOrders = () => (
               <td style={{ color: "#d97706", fontWeight: 600, padding: "8px 8px" }}>{o.id}</td>
               <td style={{ padding: "8px 8px" }}>{o.customer}</td>
               <td style={{ padding: "8px 8px" }}>
-                <span style={{
-                  background: typeColor[o.type],
-                  color: "#fff",
-                  borderRadius: 6,
-                  padding: "2px 10px",
-                  fontSize: 13,
-                  fontWeight: 600
-                }}>{o.type}</span>
+                <span style={badgeStyle}>{o.type}</span>
               </td>
               <td style={{ padding: "8px 8px" }}>
-                <span style={{
-                  background: statusColor[o.status],
-                  color: "#fff",
-                  borderRadius: 6,
-                  padding: "2px 10px",
-                  fontSize: 13,
-                  fontWeight: 600
-                }}>{o.status}</span>
+                <span style={badgeStyle}>{o.status}</span>
               </td>
               <td style={{ padding: "8px 8px" }}>{o.items}</td>
               <td style={{ padding: "8px 8px" }}>{o.total}</td>
