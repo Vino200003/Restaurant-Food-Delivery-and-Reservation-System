@@ -7,16 +7,18 @@ import ReservationsPanel from "../../components/ReservationsPanel/ReservationsPa
 import RecentOrders from "../../components/RecentOrders/RecentOrders";
 import ActivityFeed from "../../components/ActivityFeed/ActivityFeed";
 
+// Card and section styles
 const sectionCardStyle = {
   borderRadius: 14,
   boxShadow: "0 2px 8px 0 rgba(0,0,0,0.04)",
   padding: "20px 20px 16px 20px",
+  background: "#fff",
   marginBottom: 0
 };
 
 const sectionHeaderStyle = {
-  fontWeight: 600,
-  fontSize: 18,
+  fontWeight: 700,
+  fontSize: 20,
   marginBottom: 12,
   letterSpacing: 0.2
 };
@@ -63,14 +65,13 @@ const AdminHomePage = () => {
               flexDirection: "column"
             }}
           >
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                marginBottom: 24,
-                gap: 16
-              }}
-            >
+            {/* Page Title */}
+            <div style={{
+              display: "flex",
+              alignItems: "center",
+              marginBottom: 24,
+              gap: 16
+            }}>
               <span
                 style={{
                   fontSize: 32,
@@ -97,15 +98,23 @@ const AdminHomePage = () => {
             <div style={{ color: "#888", marginBottom: 24, fontSize: 15 }}>
               Overview of your restaurant performance
             </div>
-            <div style={{ 
-              ...sectionCardStyle, 
-              marginBottom: 24, 
-              background: cardColors[0].background 
+            {/* Key Metrics */}
+            <div style={{
+              ...sectionCardStyle,
+              marginBottom: 24,
+              background: cardColors[0].background
             }}>
               <div style={{ ...sectionHeaderStyle, color: cardColors[0].header }}>Key Metrics</div>
               <DashboardCards />
             </div>
-            <div style={{ display: "flex", gap: 24, marginTop: 0, flex: 1 }}>
+            {/* Main Panels */}
+            <div style={{
+              display: "flex",
+              gap: 24,
+              marginTop: 0,
+              flex: 1
+            }}>
+              {/* Left column: Sales Overview & Recent Orders */}
               <div style={{ flex: 2, display: "flex", flexDirection: "column", gap: 24 }}>
                 <div style={{ ...sectionCardStyle, background: cardColors[1].background }}>
                   <div style={{ ...sectionHeaderStyle, color: cardColors[1].header }}>Sales Overview</div>
@@ -116,6 +125,7 @@ const AdminHomePage = () => {
                   <RecentOrders />
                 </div>
               </div>
+              {/* Right column: Reservations & Activity Feed */}
               <div style={{ flex: 1, display: "flex", flexDirection: "column", gap: 24 }}>
                 <div style={{ ...sectionCardStyle, background: cardColors[3].background }}>
                   <div style={{ ...sectionHeaderStyle, color: cardColors[3].header }}>Reservations</div>

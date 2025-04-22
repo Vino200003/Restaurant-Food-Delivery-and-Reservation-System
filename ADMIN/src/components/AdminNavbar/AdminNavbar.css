@@ -13,7 +13,7 @@ html, body {
     background-color:rgb(43, 41, 41);
     color: white;
     align-items: center;
-    font-family: 'Segoe UI', sans-serif;
+    font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
     border-bottom: 4px solid #c49b63;
     position: fixed;
     top: 0;
@@ -126,7 +126,7 @@ html, body {
     font-size: 30px;
     font-weight: bold;
     color: #c49b63;
-    font-family: 'Playfair Display', serif;  /* Apply Playfair Display font */
+    font-family: 'Segoe UI', 'Roboto', Arial, serif;
     font-style: italic;  /* Make it italic */
     text-decoration: none;
 }

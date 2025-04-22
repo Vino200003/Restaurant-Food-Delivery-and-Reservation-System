@@ -28,7 +28,8 @@ const ActivityFeed = () => (
     borderRadius: 12,
     boxShadow: "0 1px 4px #0001",
     padding: 20,
-    marginBottom: 0
+    marginBottom: 0,
+    fontFamily: "'Segoe UI', 'Roboto', Arial, sans-serif"
   }}>
     <div style={{ fontWeight: 600, fontSize: 16, marginBottom: 12 }}>Activity Feed</div>
     <div>

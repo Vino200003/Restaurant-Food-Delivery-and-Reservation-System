@@ -200,8 +200,18 @@ const OrdersPage = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {filteredOrders.map(order => (
-                    <tr key={order.id} style={{ borderBottom: "1px solid #f3f4f6" }}>
+                  {filteredOrders.map((order, idx) => (
+                    <tr
+                      key={order.id}
+                      style={{
+                        borderBottom: "1px solid #f3f4f6",
+                        background: idx % 2 === 0 ? "#fafafa" : "#fff",
+                        transition: "background 0.2s",
+                        cursor: "pointer"
+                      }}
+                      onMouseEnter={e => e.currentTarget.style.background = "#fbeee6"}
+                      onMouseLeave={e => e.currentTarget.style.background = idx % 2 === 0 ? "#fafafa" : "#fff"}
+                    >
                       <td style={{ color: "#d97706", fontWeight: 600, padding: "12px 8px" }}>{order.id}</td>
                       <td style={{ padding: "12px 8px" }}>
                         <div style={{ fontWeight: 600 }}>{order.customer.name}</div>

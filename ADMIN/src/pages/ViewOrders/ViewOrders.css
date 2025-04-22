@@ -2,6 +2,7 @@
   display: flex;
   min-height: 100vh;
   background: #f7f8fa;
+  font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
 }
 .view-orders-main {
   flex: 1;
@@ -12,6 +13,7 @@
   padding: 32px 32px 24px 32px;
   display: flex;
   flex-direction: column;
+  font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
 }
 .view-orders-header {
   display: flex;
