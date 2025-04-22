@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import AdminNavbar from "../../components/AdminNavbar/AdminNavbar";
 import AdminSidebar from "../../components/AdminSidebar/AdminSidebar";
 
@@ -61,6 +62,7 @@ const OrdersPage = () => {
   const [search, setSearch] = useState("");
   const [statusFilter, setStatusFilter] = useState("All Statuses");
   const [typeFilter, setTypeFilter] = useState("All Types");
+  const navigate = useNavigate();
 
   // Filtering logic (simple)
   const filteredOrders = orders.filter(order => {
@@ -224,13 +226,16 @@ const OrdersPage = () => {
                         </span>
                       </td>
                       <td style={{ padding: "12px 8px" }}>
-                        <span style={{
-                          display: "inline-flex",
-                          alignItems: "center",
-                          cursor: "pointer",
-                          color: "#222",
-                          fontWeight: 500
-                        }}>
+                        <span
+                          style={{
+                            display: "inline-flex",
+                            alignItems: "center",
+                            cursor: "pointer",
+                            color: "#222",
+                            fontWeight: 500
+                          }}
+                          onClick={() => navigate(`/orders/${order.id}`)}
+                        >
                           {/* Black and white eye icon */}
                           <span style={{ fontSize: 18, marginRight: 4, display: "flex", alignItems: "center" }}>
                             <svg width="18" height="18" fill="none" stroke="black" strokeWidth="2" viewBox="0 0 24 24"><ellipse cx="12" cy="12" rx="9" ry="5"/><circle cx="12" cy="12" r="2.5"/></svg>
