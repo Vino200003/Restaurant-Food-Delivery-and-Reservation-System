@@ -29,7 +29,7 @@ const icons = {
 const navItems = [
   { label: "Dashboard", icon: icons.Dashboard, path: "/" },
   { label: "Orders", icon: icons.Orders, path: "/orders" },
-  { label: "Reservations", icon: icons.Reservations },
+  { label: "Reservations", icon: icons.Reservations, path: "/reservations" },
   { label: "Inventory", icon: icons.Inventory, path: "/inventory" },
   { label: "Staff", icon: icons.Staff, path: "/staff" },
   { label: "Reports", icon: icons.Reports },
