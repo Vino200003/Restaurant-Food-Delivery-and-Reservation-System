@@ -33,7 +33,7 @@ const navItems = [
   { label: "Inventory", icon: icons.Inventory, path: "/inventory" },
   { label: "Staff", icon: icons.Staff, path: "/staff" },
   { label: "Reports", icon: icons.Reports, path: "/reports" },
-  { label: "Settings", icon: icons.Settings },
+  { label: "Settings", icon: icons.Settings, path: "/settings" }, // <-- add path
 ];
 
 const AdminSidebar = () => {
