@@ -1,4 +1,5 @@
 import React from "react";
+import "./DashboardCards.css";
 
 // Black & white SVG icons for dashboard cards
 const cardIcons = [
@@ -48,28 +49,18 @@ const cards = [
 ];
 
 const DashboardCards = () => (
-  <div style={{ display: "flex", gap: 24 }}>
+  <div className="dashboard-cards">
     {cards.map(card => (
-      <div key={card.label} style={{
-        background: "#fff",
-        borderRadius: 12,
-        boxShadow: "0 1px 4px #0001",
-        padding: "20px 24px",
-        flex: 1,
-        minWidth: 180,
-        display: "flex",
-        alignItems: "center",
-        gap: 16
-      }}>
-        <div style={{ width: 36, height: 36, display: "flex", alignItems: "center", justifyContent: "center" }}>
+      <div key={card.label} className="dashboard-card">
+        <div className="dashboard-card-icon">
           {card.icon}
         </div>
-        <div style={{ flex: 1 }}>
-          <div style={{ fontSize: 15, color: "#888", marginBottom: 8 }}>{card.label}</div>
-          <div style={{ fontSize: 28, fontWeight: 700, marginBottom: 6 }}>{card.value}</div>
-          <div style={{ display: "flex", alignItems: "center", fontSize: 14 }}>
-            <span style={{ color: card.changeColor, fontWeight: 600, marginRight: 6 }}>{card.change}</span>
-            <span style={{ color: "#aaa" }}>{card.sub}</span>
+        <div className="dashboard-card-content">
+          <div className="dashboard-card-label">{card.label}</div>
+          <div className="dashboard-card-value">{card.value}</div>
+          <div className="dashboard-card-change-row">
+            <span className="dashboard-card-change" style={{ color: card.changeColor }}>{card.change}</span>
+            <span className="dashboard-card-sub">{card.sub}</span>
           </div>
         </div>
       </div>

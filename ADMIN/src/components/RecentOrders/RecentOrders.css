@@ -1,0 +1,42 @@
+.recent-orders-container {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 1px 4px #0001;
+  padding: 0;
+  margin-bottom: 0;
+  overflow: auto;
+}
+.recent-orders-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 15px;
+}
+.recent-orders-table th {
+  color: #888;
+  font-weight: 600;
+  background: #f3f4f6;
+  padding: 12px 8px;
+  text-align: left;
+}
+.recent-orders-table td {
+  padding: 12px 8px;
+  border-bottom: 1px solid #f3f4f6;
+}
+.order-id {
+  color: #d97706;
+  font-weight: 600;
+}
+.customer-name {
+  font-weight: 600;
+}
+.customer-phone {
+  color: #888;
+  font-size: 13px;
+}
+.order-status {
+  border-radius: 16px;
+  padding: 2px 14px;
+  font-size: 14px;
+  font-weight: 500;
+  text-transform: lowercase;
+}

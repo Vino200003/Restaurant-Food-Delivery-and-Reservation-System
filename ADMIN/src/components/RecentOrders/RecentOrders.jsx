@@ -1,4 +1,5 @@
 import React from "react";
+import "./RecentOrders.css";
 
 // Use the same orders as OrdersPage (top 5)
 const orders = [
@@ -57,49 +58,40 @@ const statusStyles = {
 };
 
 const RecentOrders = () => (
-  <div style={{
-    background: "#fff",
-    borderRadius: 12,
-    boxShadow: "0 1px 4px #0001",
-    padding: 0,
-    marginBottom: 0,
-    overflow: "auto"
-  }}>
-    <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 15 }}>
+  <div className="recent-orders-container">
+    <table className="recent-orders-table">
       <thead>
-        <tr style={{ color: "#888", fontWeight: 600, background: "#f3f4f6" }}>
-          <th style={{ padding: "12px 8px", textAlign: "left" }}>Order ID</th>
-          <th style={{ padding: "12px 8px", textAlign: "left" }}>Customer</th>
-          <th style={{ padding: "12px 8px", textAlign: "left" }}>Date</th>
-          <th style={{ padding: "12px 8px", textAlign: "left" }}>Type</th>
-          <th style={{ padding: "12px 8px", textAlign: "left" }}>Items</th>
-          <th style={{ padding: "12px 8px", textAlign: "left" }}>Amount</th>
-          <th style={{ padding: "12px 8px", textAlign: "left" }}>Status</th>
+        <tr>
+          <th>Order ID</th>
+          <th>Customer</th>
+          <th>Date</th>
+          <th>Type</th>
+          <th>Items</th>
+          <th>Amount</th>
+          <th>Status</th>
         </tr>
       </thead>
       <tbody>
         {orders.map(order => (
-          <tr key={order.id} style={{ borderBottom: "1px solid #f3f4f6" }}>
-            <td style={{ color: "#d97706", fontWeight: 600, padding: "12px 8px" }}>{order.id}</td>
-            <td style={{ padding: "12px 8px" }}>
-              <div style={{ fontWeight: 600 }}>{order.customer.name}</div>
-              <div style={{ color: "#888", fontSize: 13 }}>{order.customer.phone}</div>
+          <tr key={order.id}>
+            <td className="order-id">{order.id}</td>
+            <td>
+              <div className="customer-name">{order.customer.name}</div>
+              <div className="customer-phone">{order.customer.phone}</div>
             </td>
-            <td style={{ padding: "12px 8px" }}>{order.date}</td>
-            <td style={{ padding: "12px 8px" }}>{order.type}</td>
-            <td style={{ padding: "12px 8px" }}>{order.items}</td>
-            <td style={{ padding: "12px 8px" }}>{order.amount}</td>
-            <td style={{ padding: "12px 8px" }}>
-              <span style={{
-                background: statusStyles[order.status]?.bg,
-                color: statusStyles[order.status]?.color,
-                border: `1px solid ${statusStyles[order.status]?.color}`,
-                borderRadius: 16,
-                padding: "2px 14px",
-                fontSize: 14,
-                fontWeight: 500,
-                textTransform: "lowercase"
-              }}>
+            <td>{order.date}</td>
+            <td>{order.type}</td>
+            <td>{order.items}</td>
+            <td>{order.amount}</td>
+            <td>
+              <span
+                className={`order-status order-status-${order.status}`}
+                style={{
+                  background: statusStyles[order.status]?.bg,
+                  color: statusStyles[order.status]?.color,
+                  border: `1px solid ${statusStyles[order.status]?.color}`
+                }}
+              >
                 {order.status}
               </span>
             </td>
