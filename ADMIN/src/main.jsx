@@ -5,6 +5,7 @@ import App from "./App";
 import OrdersPage from "./pages/OrdersPage/OrdersPage";
 import ViewOrders from "./pages/ViewOrders/ViewOrders";
 import InventoryPage from "./pages/InventoryPage/InventoryPage";
+import StaffPage from "./pages/StaffPage/StaffPage";
 
 const root = ReactDOM.createRoot(document.getElementById("root")); // Use createRoot
 root.render(
@@ -14,6 +15,7 @@ root.render(
       <Route path="/orders" element={<OrdersPage />} />
       <Route path="/orders/:orderId" element={<ViewOrders />} />
       <Route path="/inventory" element={<InventoryPage />} />
+      <Route path="/staff" element={<StaffPage />} />
     </Routes>
   </BrowserRouter>
 );

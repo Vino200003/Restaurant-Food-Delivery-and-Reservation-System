@@ -31,7 +31,7 @@ const navItems = [
   { label: "Orders", icon: icons.Orders, path: "/orders" },
   { label: "Reservations", icon: icons.Reservations },
   { label: "Inventory", icon: icons.Inventory, path: "/inventory" },
-  { label: "Staff", icon: icons.Staff },
+  { label: "Staff", icon: icons.Staff, path: "/staff" },
   { label: "Reports", icon: icons.Reports },
   { label: "Settings", icon: icons.Settings },
 ];
