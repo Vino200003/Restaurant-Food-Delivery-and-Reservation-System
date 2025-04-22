@@ -32,7 +32,7 @@ const navItems = [
   { label: "Reservations", icon: icons.Reservations, path: "/reservations" },
   { label: "Inventory", icon: icons.Inventory, path: "/inventory" },
   { label: "Staff", icon: icons.Staff, path: "/staff" },
-  { label: "Reports", icon: icons.Reports },
+  { label: "Reports", icon: icons.Reports, path: "/reports" },
   { label: "Settings", icon: icons.Settings },
 ];
 
