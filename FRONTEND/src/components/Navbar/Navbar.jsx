@@ -1,13 +1,19 @@
 import React, { useContext, useEffect, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom"; // Use NavLink for active link styling and import useNavigate
 import { BiCart } from "react-icons/bi"; // Import Cart Icon
+import { FaUserCircle } from "react-icons/fa"; // Import Profile Icon
 import { CartContext } from "../../context/CartContext"; // Import CartContext
 import "./Navbar.css";
 
-const Navbar = () => {
+const Navbar = ({ loggedIn, handleLogout }) => {
   const { cart } = useContext(CartContext); // Access cart from context
   const [totalItems, setTotalItems] = useState(0);
   const navigate = useNavigate(); // Initialize useNavigate
+
+  const onLogout = () => {
+    handleLogout();
+    navigate("/");
+  };
 
   // Calculate total quantity of items in the cart whenever the cart changes
   useEffect(() => {
@@ -62,12 +68,23 @@ const Navbar = () => {
         </li>
       </ul>
       <div className="auth-buttons">
-        <NavLink to="/login" aria-label="Login to your account">
-          <button className="login-btn">Login</button>
-        </NavLink>
-        <NavLink to="/signup" aria-label="Sign up for an account">
-          <button className="signup-btn">Signup</button>
-        </NavLink>
+        {!loggedIn ? (
+          <>
+            <NavLink to="/login" aria-label="Login to your account">
+              <button className="login-btn">Login</button>
+            </NavLink>
+            <NavLink to="/signup" aria-label="Sign up for an account">
+              <button className="signup-btn">Signup</button>
+            </NavLink>
+          </>
+        ) : (
+          <>
+            <NavLink to="/profile" aria-label="Go to your profile">
+              <FaUserCircle className="profile-icon" style={{ fontSize: 32, color: "#fff", marginRight: 8, verticalAlign: "middle" }} />
+            </NavLink>
+            <button className="signup-btn" onClick={onLogout}>Logout</button>
+          </>
+        )}
         <button
           className="cart-btn"
           onClick={() => navigate('/cart')} // Navigate to the cart page

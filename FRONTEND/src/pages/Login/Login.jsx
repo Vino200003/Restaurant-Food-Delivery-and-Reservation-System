@@ -1,15 +1,23 @@
 // src/pages/Login/Login.jsx
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import "./Login.css"; // You can create a CSS file for styling
 
-const Login = () => {
+const Login = ({ handleLogin, loggedIn }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (loggedIn) {
+      navigate("/");
+    }
+  }, [loggedIn, navigate]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch("http://localhost:5000/api/users/login", { // Updated API endpoint
+      const response = await fetch("http://localhost:5000/api/users/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password }),
@@ -21,12 +29,10 @@ const Login = () => {
       }
 
       const data = await response.json();
-      console.log("Login successful:", data);
-      alert("Login successful!");
-      // Optionally, store the token in localStorage or context
       localStorage.setItem("token", data.token);
+      handleLogin();
+      navigate("/");
     } catch (error) {
-      console.error("Login failed:", error.message);
       alert(error.message || "Login failed. Please try again.");
     }
   };
