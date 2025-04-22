@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors'); // Import CORS
+const path = require('path');
 require('dotenv').config();
 const userRoutes = require('./routes/userRoutes');
 const orderRoutes = require('./routes/orderRoutes');
@@ -19,6 +20,9 @@ const app = express();
 
 app.use(cors()); // Enable CORS
 app.use(bodyParser.json());
+
+// Serve static files from the frontend's public directory
+app.use('/images', express.static(path.join(__dirname, '../FRONTEND/public')));
 
 // Routes
 app.use('/api', userRoutes);
