@@ -15,6 +15,7 @@ const paymentRoutes = require('./routes/paymentRoutes');
 const inventoryRoutes = require('./routes/inventoryRoutes');
 const feedbackRoutes = require('./routes/feedbackRoutes');
 const supplierRoutes = require('./routes/supplierRoutes');
+const subCategoryRoutes = require('./routes/subCategoryRoutes');
 
 const app = express();
 
@@ -24,20 +25,20 @@ app.use(bodyParser.json());
 // Serve static files from the frontend's public directory
 app.use('/images', express.static(path.join(__dirname, '../FRONTEND/public')));
 
-// Routes
-app.use('/api', userRoutes);
-app.use('/api', orderRoutes);
-app.use('/api', staffRoutes);
-app.use('/api', reservationRoutes);
-app.use('/api', tableRoutes);
-app.use('/api', categoryRoutes);
-app.use('/api', menuRoutes);
-app.use('/api', orderItemRoutes);
-app.use('/api', paymentRoutes);
-app.use('/api', inventoryRoutes);
-app.use('/api', feedbackRoutes);
-app.use('/api', supplierRoutes);
-
+// Routes with proper namespacing
+app.use('/api/users', userRoutes);
+app.use('/api/orders', orderRoutes);
+app.use('/api/staff', staffRoutes);
+app.use('/api/reservations', reservationRoutes);
+app.use('/api/tables', tableRoutes);
+app.use('/api/categories', categoryRoutes);
+app.use('/api/menu', menuRoutes);
+app.use('/api/orderItems', orderItemRoutes);
+app.use('/api/payments', paymentRoutes);
+app.use('/api/inventory', inventoryRoutes);
+app.use('/api/feedback', feedbackRoutes);
+app.use('/api/suppliers', supplierRoutes);
+app.use('/api/subcategories', subCategoryRoutes);
 
 // Default route
 app.get('/', (req, res) => {
