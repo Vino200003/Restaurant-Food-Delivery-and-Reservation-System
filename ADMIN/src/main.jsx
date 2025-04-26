@@ -9,6 +9,7 @@ import StaffPage from "./pages/StaffPage/StaffPage";
 import ReservationPage from "./pages/ReservationPage/ReservationPage";
 import ReportsPage from "./pages/ReportsPage/ReportsPage";
 import SettingsPage from "./pages/SettingsPage/SettingsPage";
+import MenuPage from "./pages/MenuPage/MenuPage";
 
 const root = ReactDOM.createRoot(document.getElementById("root")); // Use createRoot
 root.render(
@@ -18,6 +19,7 @@ root.render(
       <Route path="/orders" element={<OrdersPage />} />
       <Route path="/orders/:orderId" element={<ViewOrders />} />
       <Route path="/inventory" element={<InventoryPage />} />
+      <Route path="/menu" element={<MenuPage />} />
       <Route path="/staff" element={<StaffPage />} />
       <Route path="/reservations" element={<ReservationPage />} />
       <Route path="/reports" element={<ReportsPage />} />

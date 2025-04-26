@@ -15,6 +15,9 @@ const icons = {
   Inventory: (
     <svg width="20" height="20" fill="none" stroke="black" strokeWidth="1.5" viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M16 3v4M8 3v4"/></svg>
   ),
+  Menu: (
+    <svg width="20" height="20" fill="none" stroke="black" strokeWidth="1.5" viewBox="0 0 24 24"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+  ),
   Staff: (
     <svg width="20" height="20" fill="none" stroke="black" strokeWidth="1.5" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21v-2a4 4 0 0 1 4-4h8a4 4 0 0 1 4 4v2"/></svg>
   ),
@@ -31,9 +34,10 @@ const navItems = [
   { label: "Orders", icon: icons.Orders, path: "/orders" },
   { label: "Reservations", icon: icons.Reservations, path: "/reservations" },
   { label: "Inventory", icon: icons.Inventory, path: "/inventory" },
+  { label: "Menu", icon: icons.Menu, path: "/menu" },
   { label: "Staff", icon: icons.Staff, path: "/staff" },
   { label: "Reports", icon: icons.Reports, path: "/reports" },
-  { label: "Settings", icon: icons.Settings, path: "/settings" }, // <-- add path
+  { label: "Settings", icon: icons.Settings, path: "/settings" },
 ];
 
 const AdminSidebar = () => {
@@ -61,7 +65,10 @@ const AdminSidebar = () => {
               background: item.path && location.pathname === item.path ? "#fbeee6" : "transparent",
               color: "#222",
               fontWeight: item.path && location.pathname === item.path ? 600 : 400,
-              cursor: item.path ? "pointer" : "default"
+              cursor: item.path ? "pointer" : "default",
+              fontFamily: "Arial, sans-serif",
+
+
             }}
             onClick={() => item.path && navigate(item.path)}
           >

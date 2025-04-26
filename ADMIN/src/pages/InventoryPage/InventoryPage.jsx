@@ -124,7 +124,8 @@ const InventoryPage = () => {
             boxShadow: "0 4px 24px 0 rgba(0,0,0,0.07)",
             minHeight: "calc(100vh - 128px)",
             display: "flex",
-            flexDirection: "column"
+            flexDirection: "column",
+            fontFamily: "Arial, sans-serif"
           }}>
             <div style={{ fontSize: 32, fontWeight: 700, marginBottom: 4 }}>Inventory</div>
             <div style={{ color: "#6b7280", marginBottom: 24, fontSize: 16 }}>

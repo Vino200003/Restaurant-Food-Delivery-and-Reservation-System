@@ -6,6 +6,7 @@ import SalesOverview from "../../components/SalesOverview/SalesOverview";
 import ReservationsPanel from "../../components/ReservationsPanel/ReservationsPanel";
 import RecentOrders from "../../components/RecentOrders/RecentOrders";
 import ActivityFeed from "../../components/ActivityFeed/ActivityFeed";
+import { useNavigate } from "react-router-dom";
 
 // Card and section styles
 const sectionCardStyle = {
@@ -32,6 +33,7 @@ const cardColors = [
 ];
 
 const AdminHomePage = () => {
+  const navigate = useNavigate();
   return (
     <>
       <AdminNavbar />
@@ -62,7 +64,8 @@ const AdminHomePage = () => {
               boxShadow: "0 4px 24px 0 rgba(0,0,0,0.07)",
               minHeight: "calc(100vh - 128px)",
               display: "flex",
-              flexDirection: "column"
+              flexDirection: "column",
+              fontFamily: "Arial, sans-serif"
             }}
           >
             {/* Page Title */}
@@ -106,6 +109,35 @@ const AdminHomePage = () => {
             }}>
               <div style={{ ...sectionHeaderStyle, color: cardColors[0].header }}>Key Metrics</div>
               <DashboardCards />
+            </div>
+            {/* Quick Access to Menu Management */}
+            <div style={{
+              ...sectionCardStyle,
+              marginBottom: 24,
+              background: "#e6f7fa",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between"
+            }}>
+              <div>
+                <div style={{ ...sectionHeaderStyle, color: "#0891b2" }}>Menu Management</div>
+                <div style={{ color: "#6b7280", fontSize: 15 }}>Add, update, or remove menu items and categories</div>
+              </div>
+              <button
+                style={{
+                  background: "#0891b2",
+                  color: "#fff",
+                  border: "none",
+                  borderRadius: 8,
+                  padding: "10px 24px",
+                  fontWeight: 600,
+                  fontSize: 15,
+                  cursor: "pointer"
+                }}
+                onClick={() => navigate("/menu")}
+              >
+                Go to Menu Page
+              </button>
             </div>
             {/* Main Panels */}
             <div style={{
