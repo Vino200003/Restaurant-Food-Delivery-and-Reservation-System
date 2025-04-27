@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { CartContext } from "../../context/CartContext";
-import { FaShoppingBag, FaTruck, FaUtensils, FaCreditCard, FaWallet, FaRegCreditCard, FaCheckCircle } from "react-icons/fa";
+import { FaShoppingBag, FaTruck, FaUtensils, FaCreditCard, FaWallet, FaRegCreditCard, FaCheckCircle, FaCalendarAlt, FaClock } from "react-icons/fa";
 import "./Checkout.css";
 
 const Checkout = () => {
@@ -12,6 +12,8 @@ const Checkout = () => {
     email: "",
     phone: "",
     address: "",
+    pickupDate: "",
+    pickupTime: ""
   });
   const [orderType, setOrderType] = useState("Delivery");
   const [paymentMethod, setPaymentMethod] = useState("Cash");
@@ -41,7 +43,9 @@ const Checkout = () => {
   };
 
   const handlePlaceOrder = () => {
-    if (!userDetails.name || !userDetails.email || !userDetails.phone || (orderType === "Delivery" && !userDetails.address)) {
+    if (!userDetails.name || !userDetails.email || !userDetails.phone || 
+        (orderType === "Delivery" && !userDetails.address) ||
+        (orderType === "Pickup" && (!userDetails.pickupDate || !userDetails.pickupTime))) {
       alert("Please fill in all the required fields.");
       return;
     }
@@ -190,6 +194,36 @@ const Checkout = () => {
                         placeholder="Enter your complete delivery address"
                         required
                       />
+                    </div>
+                  )}
+                  
+                  {orderType === "Pickup" && (
+                    <div className="pickup-details">
+                      <h3>Pickup Details</h3>
+                      <div className="form-row">
+                        <div className="form-group">
+                          <label><FaCalendarAlt className="input-icon" /> Pickup Date</label>
+                          <input
+                            type="date"
+                            name="pickupDate"
+                            value={userDetails.pickupDate}
+                            onChange={handleInputChange}
+                            required
+                            min={new Date().toISOString().split('T')[0]}
+                          />
+                        </div>
+                        <div className="form-group">
+                          <label><FaClock className="input-icon" /> Pickup Time</label>
+                          <input
+                            type="time"
+                            name="pickupTime"
+                            value={userDetails.pickupTime}
+                            onChange={handleInputChange}
+                            required
+                          />
+                        </div>
+                      </div>
+                      <p className="pickup-note">Our kitchen needs at least 30 minutes to prepare your order.</p>
                     </div>
                   )}
                 </form>
