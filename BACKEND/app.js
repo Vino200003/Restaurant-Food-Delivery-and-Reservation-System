@@ -31,13 +31,13 @@ app.use('/api/orders', orderRoutes);
 app.use('/api/staff', staffRoutes);
 app.use('/api/reservations', reservationRoutes);
 app.use('/api/tables', tableRoutes);
-app.use('/api/categories', categoryRoutes);
+app.use('/api/category', categoryRoutes); // Changed from categories to category
 app.use('/api/menu', menuRoutes);
-app.use('/api/orderItems', orderItemRoutes);
+app.use('/api/orders', orderItemRoutes);
 app.use('/api/payments', paymentRoutes);
 app.use('/api/inventory', inventoryRoutes);
 app.use('/api/feedback', feedbackRoutes);
-app.use('/api/suppliers', supplierRoutes);
+app.use('/api/supplier', supplierRoutes);
 app.use('/api/subcategories', subCategoryRoutes);
 
 // Default route

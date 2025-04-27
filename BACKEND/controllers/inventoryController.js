@@ -2,19 +2,53 @@ const db = require('../config/db');
 
 // Create a new Inventory
 exports.createInventory = (req, res) => {
-    const { name, quantity, unit, manu_date, exp_date, status, supplier_id } = req.body;
-
-    const query = 'INSERT INTO inventory (name, quantity, unit, manu_date, exp_date, status, supplier_id) VALUES (?, ?, ?, ?, ?, ?)';
-    db.query(query, [name, quantity, unit, manu_date, exp_date, status, supplier_id], (err, results) => {
-        if (err) {
-            return res.status(500).json({ message: 'Database error', error: err.message });
-        }
-
-        res.status(201).json({
-            message: 'Inventory created successfully',
-            inventory_id: results.insertId
-        });
+  // Match columns exactly to your inventory table structure
+  const { name, quantity, unit, manu_date, exp_date, status, supplier_id } = req.body;
+  
+  // Validate required fields
+  if (!name || !quantity || !unit) {
+    return res.status(400).json({
+      message: 'Name, quantity, and unit are required fields',
+      required: ['name', 'quantity', 'unit'],
+      received: req.body
     });
+  }
+  
+  // Set default status if not provided
+  const inventoryStatus = status || 'available';
+  
+  // Log the received data for debugging
+  console.log('Creating inventory with data:', {
+    name, quantity, unit, manu_date, exp_date, status: inventoryStatus, supplier_id
+  });
+  
+  // Match column names and placeholders to your table structure
+  const query = `
+    INSERT INTO inventory 
+    (name, quantity, unit, manu_date, exp_date, status, supplier_id) 
+    VALUES (?, ?, ?, ?, ?, ?, ?)
+  `;
+  
+  // Ensure all values are properly passed and in the correct order
+  db.query(
+    query, 
+    [name, quantity, unit, manu_date || null, exp_date || null, inventoryStatus, supplier_id || null], 
+    (err, results) => {
+      if (err) {
+        console.error('Database error:', err);
+        return res.status(500).json({ 
+          message: 'Database error', 
+          error: err.message,
+          sql: err.sql // Log the SQL that caused the error
+        });
+      }
+      
+      res.status(201).json({
+        message: 'Inventory item created successfully',
+        inventory_id: results.insertId
+      });
+    }
+  );
 };
 
 // Get details of an inventory item
