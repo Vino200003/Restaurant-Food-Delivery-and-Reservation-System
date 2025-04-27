@@ -61,8 +61,6 @@ const Checkout = () => {
       const newOrderId = "ORD" + Math.floor(100000 + Math.random() * 900000);
       setOrderId(newOrderId);
       
-      // Remove sessionStorage for currentOrder as we no longer need order tracking
-      
       // Show order complete message
       setIsProcessing(false);
       setOrderComplete(true);
@@ -70,15 +68,15 @@ const Checkout = () => {
       // Clear cart after successful order
       clearCart();
       
-      // Wait 3 seconds before redirecting to the menu page instead of order tracking
+      // Wait 3 seconds before redirecting to the menu page
       setTimeout(() => {
         navigate('/menu');
       }, 3000);
     }, 1500);
   };
 
-  // If cart is empty, redirect to menu
-  if (cart.length === 0 && !isProcessing) {
+  // If cart is empty and we're not processing or displaying a completed order, redirect to menu
+  if (cart.length === 0 && !isProcessing && !orderComplete) {
     return (
       <div className="checkout-page">
         <div className="checkout-container">

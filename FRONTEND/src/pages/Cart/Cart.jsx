@@ -6,7 +6,7 @@ import { FaRegTrashAlt } from 'react-icons/fa';
 import { CartContext } from '../../context/CartContext';
 
 const Cart = () => {
-  const { cart, updateQuantity, removeFromCart, calculateTotalItems } = useContext(CartContext);
+  const { cart, updateQuantity, removeFromCart, calculateTotalItems, clearCart } = useContext(CartContext);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -60,7 +60,7 @@ const Cart = () => {
             <p className="no-items">Your cart is empty. Add items to proceed.</p>
           )}
           <div className="cart-actions">
-            <button onClick={() => cart.length > 0 && setCart([])}>Clear Cart</button>
+            <button onClick={() => cart.length > 0 && clearCart()}>Clear Cart</button>
             <button onClick={() => navigate('/menu')}>Continue Shopping</button>
           </div>
         </div>

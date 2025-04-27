@@ -55,6 +55,11 @@ export const CartProvider = ({ children }) => {
     
   const calculateTotalItems = () =>
     cart.reduce((total, item) => total + item.quantity, 0);
+  
+  // Add clear cart function
+  const clearCart = () => {
+    setCart([]);
+  };
 
   return (
     <CartContext.Provider
@@ -64,7 +69,8 @@ export const CartProvider = ({ children }) => {
         removeFromCart,
         updateQuantity,
         calculateSubtotal,
-        calculateTotalItems
+        calculateTotalItems,
+        clearCart
       }}
     >
       {children}
